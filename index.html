@@ -27,8 +27,13 @@
             --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.03);
             --card-bg: #ffffff;
             --body-bg: #f8f9fa;
-            --text-color: #5a5a5a;
-            --text-light: #8a8a8a;
+            
+            /* PERBAIKAN: Variabel warna teks untuk kontras lebih baik */
+            --text-color: #4a4a4a;           /* Lebih gelap dari #5a5a5a */
+            --text-light: #6a6a6a;           /* Lebih gelap dari #8a8a8a */
+            --text-muted: #888888;           /* Warna baru untuk teks sekunder */
+            --text-dark: #333333;            /* Warna baru untuk teks utama */
+            
             --border-color: rgba(0, 0, 0, 0.05);
             --modal-overlay: rgba(0, 0, 0, 0.5);
             --radius: 16px;
@@ -56,8 +61,13 @@
             --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.15);
             --card-bg: #1e1e1e;
             --body-bg: #121212;
-            --text-color: #e0e0e0;
-            --text-light: #aaaaaa;
+            
+            /* PERBAIKAN: Variabel warna teks untuk dark mode */
+            --text-color: #d0d0d0;           /* Lebih gelap dari #e0e0e0 */
+            --text-light: #b0b0b0;           /* Lebih terang dari #aaaaaa */
+            --text-muted: #999999;           /* Warna baru untuk teks sekunder */
+            --text-dark: #f0f0f0;            /* Warna baru untuk teks utama */
+            
             --border-color: rgba(255, 255, 255, 0.05);
             --modal-overlay: rgba(0, 0, 0, 0.7);
         }
@@ -104,19 +114,21 @@
             transition: background-color 0.3s ease;
         }
 
+        /* PERBAIKAN: Header title lebih kontras */
         .header h1 {
             font-size: 1.4rem;
             font-weight: 700;
-            color: var(--primary-dark);
+            color: var(--text-dark); /* PERBAIKAN: Ganti dari var(--primary-dark) */
             text-align: center;
             margin-bottom: 4px;
             transition: color 0.3s ease;
             letter-spacing: -0.3px;
         }
 
+        /* PERBAIKAN: Header subtitle lebih jelas */
         .header-subtitle {
             text-align: center;
-            color: var(--text-light);
+            color: var(--text-muted); /* PERBAIKAN: Ganti dari var(--text-light) */
             font-size: 0.75rem;
             transition: color 0.3s ease;
             line-height: 1.3;
@@ -165,10 +177,11 @@
             box-shadow: var(--shadow-light);
         }
 
+        /* PERBAIKAN: Card title lebih kontras */
         .card-title {
             font-size: 1.1rem;
             font-weight: 600;
-            color: var(--primary-dark);
+            color: var(--text-dark); /* PERBAIKAN: Ganti dari var(--primary-dark) */
             margin-bottom: 15px;
             display: flex;
             align-items: center;
@@ -205,18 +218,20 @@
         }
 
         /* PERUBAHAN: Font nilai uang di statistik diperkecil */
+        /* PERBAIKAN: Stat value lebih kontras */
         .stat-value {
             font-size: 1.2rem; /* Diperkecil dari 1.4rem */
             font-weight: 700;
-            color: var(--primary-dark);
+            color: var(--text-dark); /* PERBAIKAN: Ganti dari var(--primary-dark) */
             margin: 8px 0;
             transition: color 0.3s ease;
             letter-spacing: -0.5px; /* Tambahkan letter-spacing negatif untuk angka */
         }
 
+        /* PERBAIKAN: Stat label lebih jelas */
         .stat-label {
             font-size: 0.85rem;
-            color: var(--text-light);
+            color: var(--text-muted); /* PERBAIKAN: Ganti dari var(--text-light) */
             transition: color 0.3s ease;
         }
 
@@ -233,6 +248,7 @@
             margin: 25px 0;
         }
 
+        /* PERBAIKAN: Progress header lebih jelas */
         .progress-header {
             display: flex;
             justify-content: space-between;
@@ -286,23 +302,26 @@
             flex: 1;
         }
 
+        /* PERBAIKAN: Item title lebih kontras */
         .item-title {
-            font-weight: 500;
-            color: var(--text-color);
+            font-weight: 600; /* PERBAIKAN: Dari 500 ke 600 */
+            color: var(--text-dark); /* PERBAIKAN: Ganti dari var(--text-color) */
             margin-bottom: 5px;
             transition: color 0.3s ease;
         }
 
+        /* PERBAIKAN: Item subtitle lebih jelas */
         .item-subtitle {
             font-size: 0.85rem;
-            color: var(--text-light);
+            color: var(--text-muted); /* PERBAIKAN: Ganti dari var(--text-light) */
             transition: color 0.3s ease;
         }
 
         /* PERUBAHAN: Font nilai uang di list item diperkecil */
+        /* PERBAIKAN: Item amount lebih kontras */
         .item-amount {
             font-weight: 600;
-            color: var(--primary-dark);
+            color: var(--text-dark); /* PERBAIKAN: Ganti dari var(--primary-dark) */
             font-size: 0.95rem; /* Diperkecil dari 1.1rem */
             transition: color 0.3s ease;
             letter-spacing: -0.3px; /* Tambahkan letter-spacing negatif untuk angka */
@@ -310,32 +329,38 @@
             min-width: 100px; /* Memberikan ruang minimal untuk angka */
         }
 
+        /* PERBAIKAN: Status colors lebih jelas dengan background transparan */
         .item-status {
             font-size: 0.8rem;
             padding: 4px 10px;
             border-radius: 20px;
             font-weight: 500;
             transition: all 0.3s ease;
+            border: 1px solid transparent; /* Tambahkan border */
         }
 
         .status-pending {
-            background-color: var(--warning);
             color: #8a5a00;
+            background-color: rgba(245, 198, 165, 0.2); /* Background lebih transparan */
+            border-color: var(--warning); /* Tambahkan border warna */
         }
 
         .status-done {
-            background-color: var(--success);
             color: #1a531b;
+            background-color: rgba(163, 201, 168, 0.2); /* Background lebih transparan */
+            border-color: var(--success); /* Tambahkan border warna */
         }
 
         [data-theme="dark"] .status-pending {
-            background-color: #d4a987;
-            color: #5a3d00;
+            color: #f5c6a5;
+            background-color: rgba(212, 169, 135, 0.2);
+            border-color: var(--warning);
         }
 
         [data-theme="dark"] .status-done {
-            background-color: #8bb590;
-            color: #0d3a0e;
+            color: #a3c9a8;
+            background-color: rgba(139, 181, 144, 0.2);
+            border-color: var(--success);
         }
 
         /* Buttons */
@@ -423,12 +448,13 @@
             transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
+        /* PERBAIKAN: Bottom nav lebih jelas */
         .nav-item {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            color: var(--text-light);
+            color: var(--text-muted); /* PERBAIKAN: Ganti dari var(--text-light) */
             text-decoration: none;
             padding: 8px;
             flex: 1;
@@ -532,10 +558,11 @@
             transition: border-color 0.3s ease;
         }
 
+        /* PERBAIKAN: Modal title lebih kontras */
         .modal-title {
             font-size: 1.2rem;
             font-weight: 600;
-            color: var(--primary-dark);
+            color: var(--text-dark); /* PERBAIKAN: Ganti dari var(--primary-dark) */
             transition: color 0.3s ease;
         }
 
@@ -563,11 +590,12 @@
             margin-bottom: 20px;
         }
 
+        /* PERBAIKAN: Form label lebih kontras */
         .form-label {
             display: block;
             margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--text-color);
+            font-weight: 600; /* PERBAIKAN: Dari 500 ke 600 */
+            color: var(--text-dark); /* PERBAIKAN: Ganti dari var(--text-color) */
             transition: color 0.3s ease;
         }
 
@@ -618,12 +646,13 @@
             transition: border-color 0.3s ease;
         }
 
+        /* PERBAIKAN: Tabs lebih jelas */
         .tab {
             flex: 1;
             text-align: center;
             padding: 15px;
             font-weight: 500;
-            color: var(--text-light);
+            color: var(--text-muted); /* PERBAIKAN: Ganti dari var(--text-light) */
             cursor: pointer;
             transition: var(--transition);
             border-bottom: 3px solid transparent;
@@ -673,11 +702,11 @@
             gap: 10px;
         }
 
-        /* Empty State */
+        /* PERBAIKAN: Empty state lebih jelas */
         .empty-state {
             text-align: center;
             padding: 40px 20px;
-            color: var(--text-light);
+            color: var(--text-muted); /* PERBAIKAN: Ganti dari var(--text-light) */
             transition: color 0.3s ease;
         }
 
@@ -752,10 +781,10 @@
             letter-spacing: -0.3px;
         }
         
-        /* PERUBAHAN: Styling untuk nilai uang di history tab */
+        /* PERBAIKAN: History amounts lebih jelas dengan font-weight lebih tebal */
         .history-amount {
             font-size: 0.95rem;
-            font-weight: 600;
+            font-weight: 700; /* PERBAIKAN: Dari 600 ke 700 */
             text-align: right;
             min-width: 100px;
             letter-spacing: -0.3px;
@@ -768,9 +797,53 @@
         .history-amount.negative {
             color: var(--danger);
         }
+        
+        /* PERBAIKAN: Tambahan untuk form focus states */
+        .form-control:focus {
+            box-shadow: 0 0 0 3px rgba(157, 138, 126, 0.1);
+        }
+        
+        /* PERBAIKAN: Tambahan untuk card hover effect */
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* PERBAIKAN: Text selection color */
+        ::selection {
+            background-color: rgba(157, 138, 126, 0.3);
+            color: var(--text-dark);
+        }
+        
+        /* PERBAIKAN: Placeholder text color */
+        ::placeholder {
+            color: var(--text-light);
+            opacity: 0.7;
+        }
+        
+        /* PERBAIKAN: Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--gray-light);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-light);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
     </style>
 </head>
 <body>
+    <!-- Konten HTML tetap sama seperti sebelumnya -->
     <!-- Header dengan ukuran yang diperkecil -->
     <header class="header">
         <div class="container">
@@ -1079,6 +1152,7 @@
     <!-- File Input for Import (hidden) -->
     <input type="file" id="import-file-input" accept=".json" style="display: none;">
 
+    <!-- JavaScript tetap sama seperti sebelumnya -->
     <script>
         // Data storage
         let savings = [];
