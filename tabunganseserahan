@@ -1,0 +1,1978 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Catatan Seserahan Nikah</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#f8f9fa">
+    <style>
+        :root {
+            /* Light Theme Colors */
+            --primary: #9d8a7e;
+            --primary-light: #c5b5a9;
+            --primary-dark: #7a6a5f;
+            --secondary: #b8a89d;
+            --accent: #d4b8a4;
+            --success: #a3c9a8;
+            --warning: #f5c6a5;
+            --danger: #e8a49c;
+            --light: #f8f9fa;
+            --dark: #5a5a5a;
+            --gray: #e0e0e0;
+            --gray-light: #f5f5f5;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.03);
+            --card-bg: #ffffff;
+            --body-bg: #f8f9fa;
+            --text-color: #5a5a5a;
+            --text-light: #8a8a8a;
+            --border-color: rgba(0, 0, 0, 0.05);
+            --modal-overlay: rgba(0, 0, 0, 0.5);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --transition: all 0.3s ease;
+            --safe-area-top: env(safe-area-inset-top, 0px);
+            --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+        }
+
+        /* Dark Theme Colors */
+        [data-theme="dark"] {
+            --primary: #b8a89d;
+            --primary-light: #9d8a7e;
+            --primary-dark: #c5b5a9;
+            --secondary: #7a6a5f;
+            --accent: #a38976;
+            --success: #8bb590;
+            --warning: #d4a987;
+            --danger: #d4897c;
+            --light: #2d2d2d;
+            --dark: #e0e0e0;
+            --gray: #444444;
+            --gray-light: #333333;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.15);
+            --card-bg: #1e1e1e;
+            --body-bg: #121212;
+            --text-color: #e0e0e0;
+            --text-light: #aaaaaa;
+            --border-color: rgba(255, 255, 255, 0.05);
+            --modal-overlay: rgba(0, 0, 0, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background-color: var(--body-bg);
+            color: var(--text-color);
+            line-height: 1.5;
+            padding-top: var(--safe-area-top);
+            padding-bottom: calc(80px + var(--safe-area-bottom));
+            max-width: 100vw;
+            overflow-x: hidden;
+            min-height: 100vh;
+            -webkit-user-select: none;
+            user-select: none;
+            touch-action: manipulation;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            width: 100%;
+            padding: 0 20px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            padding: 20px 0 10px;
+            background-color: var(--body-bg);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: background-color 0.3s ease;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-align: center;
+            margin-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .header-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+            -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--gray-light);
+        }
+
+        .theme-toggle:active {
+            transform: scale(0.95);
+        }
+
+        /* Card */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-light);
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .card-title i {
+            color: var(--primary);
+            transition: color 0.3s ease;
+        }
+
+        /* Dashboard Stats */
+        .stats-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 15px;
+            text-align: center;
+            box-shadow: var(--shadow-light);
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.3s ease;
+            -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+        }
+
+        .stat-card:active {
+            transform: scale(0.98);
+        }
+
+        .stat-value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin: 8px 0;
+            transition: color 0.3s ease;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            transition: color 0.3s ease;
+        }
+
+        .stat-positive {
+            color: var(--success);
+        }
+
+        .stat-negative {
+            color: var(--danger);
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            margin: 25px 0;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background-color: var(--gray);
+            border-radius: 5px;
+            overflow: hidden;
+            transition: background-color 0.3s ease;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-light), var(--primary));
+            border-radius: 5px;
+            transition: width 0.8s ease, background-color 0.3s ease;
+        }
+
+        /* List Items */
+        .list {
+            list-style: none;
+        }
+
+        .list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--gray-light);
+            cursor: pointer;
+            -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+            transition: background-color 0.2s ease, border-color 0.3s ease;
+        }
+
+        .list-item:active {
+            background-color: var(--gray-light);
+            border-radius: var(--radius-sm);
+        }
+
+        .list-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-info {
+            flex: 1;
+        }
+
+        .item-title {
+            font-weight: 500;
+            color: var(--text-color);
+            margin-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .item-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            transition: color 0.3s ease;
+        }
+
+        .item-amount {
+            font-weight: 600;
+            color: var(--primary-dark);
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .item-status {
+            font-size: 0.8rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .status-pending {
+            background-color: var(--warning);
+            color: #8a5a00;
+        }
+
+        .status-done {
+            background-color: var(--success);
+            color: #1a531b;
+        }
+
+        [data-theme="dark"] .status-pending {
+            background-color: #d4a987;
+            color: #5a3d00;
+        }
+
+        [data-theme="dark"] .status-done {
+            background-color: #8bb590;
+            color: #0d3a0e;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 20px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            width: 100%;
+            -webkit-appearance: none;
+            -webkit-tap-highlight-color: rgba(0,0,0,0.2);
+            touch-action: manipulation;
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background-color: var(--gray);
+            color: var(--text-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--gray-light);
+        }
+
+        .btn-success {
+            background-color: var(--success);
+            color: white;
+        }
+
+        .btn-danger {
+            background-color: var(--danger);
+            color: white;
+        }
+
+        .btn-small {
+            padding: 8px 15px;
+            font-size: 0.9rem;
+        }
+
+        .btn-icon {
+            width: 50px;
+            height: 50px;
+            padding: 0;
+            border-radius: 50%;
+            font-size: 1.2rem;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            padding: 10px 20px var(--safe-area-bottom);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 8px;
+            flex: 1;
+            transition: var(--transition);
+            -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+
+        .nav-item:active {
+            transform: scale(0.95);
+        }
+
+        .nav-item.active {
+            color: var(--primary);
+        }
+
+        .nav-icon {
+            font-size: 1.2rem;
+            margin-bottom: 4px;
+        }
+
+        .nav-label {
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+
+        /* Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 6px 20px rgba(157, 138, 126, 0.3);
+            z-index: 99;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            -webkit-tap-highlight-color: rgba(0,0,0,0.3);
+            touch-action: manipulation;
+        }
+
+        .fab:active {
+            background-color: var(--primary-dark);
+            transform: scale(0.95);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--modal-overlay);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            transition: background-color 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: modalSlideIn 0.3s ease;
+            -webkit-overflow-scrolling: touch;
+            transition: background-color 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--gray-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: border-color 0.3s ease;
+        }
+
+        .modal-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            transition: color 0.3s ease;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-light);
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+            transition: color 0.3s ease;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        /* Form */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--gray);
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            transition: var(--transition);
+            -webkit-appearance: none;
+            touch-action: manipulation;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--gray);
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            -webkit-appearance: none;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .form-actions .btn {
+            flex: 1;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--gray-light);
+            margin-bottom: 20px;
+            transition: border-color 0.3s ease;
+        }
+
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            font-weight: 500;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
+            -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+            touch-action: manipulation;
+        }
+
+        .tab:active {
+            background-color: var(--gray-light);
+        }
+
+        .tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Utility */
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-20 {
+            margin-top: 20px;
+        }
+
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+
+        .d-none {
+            display: none !important;
+        }
+
+        .d-flex {
+            display: flex;
+        }
+
+        .gap-10 {
+            gap: 10px;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-light);
+            transition: color 0.3s ease;
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            opacity: 0.5;
+        }
+
+        .empty-state p {
+            font-size: 1rem;
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .container {
+                max-width: 700px;
+            }
+            
+            .stats-container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* Safari-specific optimizations */
+        @supports (-webkit-touch-callout: none) {
+            .card, .stat-card, .btn {
+                -webkit-backdrop-filter: blur(10px);
+            }
+            
+            .modal {
+                -webkit-backdrop-filter: blur(5px);
+            }
+            
+            .bottom-nav {
+                -webkit-backdrop-filter: blur(10px);
+            }
+            
+            input, select, textarea, button {
+                font-size: 16px !important; /* Mencegah zoom pada input di iOS */
+            }
+            
+            /* Fix untuk iOS Safari */
+            .nav-item, .tab, .btn, .list-item, .stat-card {
+                cursor: pointer;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-moon" id="theme-icon"></i>
+            </button>
+            <h1>Catatan Seserahan Nikah</h1>
+            <div class="header-subtitle">Kelola tabungan & kebutuhan seserahan dengan mudah</div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Dashboard Tab -->
+        <div id="dashboard-tab" class="tab-content active">
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-label">Total Tabungan</div>
+                    <div id="total-savings" class="stat-value">Rp 0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Target Dana</div>
+                    <div id="target-amount" class="stat-value">Rp 10.000.000</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Total Pengeluaran</div>
+                    <div id="total-expenses" class="stat-value stat-negative">Rp 0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Sisa Dana</div>
+                    <div id="remaining-balance" class="stat-value stat-positive">Rp 0</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-chart-line"></i> Progres Tabungan
+                </div>
+                <div class="progress-container">
+                    <div class="progress-header">
+                        <span>Terkumpul</span>
+                        <span id="progress-percentage">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-calendar-alt"></i> Tabungan Terbaru
+                </div>
+                <div id="recent-savings-list"></div>
+                <div id="empty-savings" class="empty-state d-none">
+                    <i class="fas fa-piggy-bank"></i>
+                    <p>Belum ada catatan tabungan</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-list-alt"></i> Kebutuhan Belum Dibeli
+                </div>
+                <div id="pending-items-list"></div>
+                <div id="empty-pending" class="empty-state d-none">
+                    <i class="fas fa-check-circle"></i>
+                    <p>Semua kebutuhan sudah dibeli</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Savings Tab -->
+        <div id="savings-tab" class="tab-content">
+            <div class="tabs">
+                <div class="tab active" data-tab="savings-list">Daftar Tabungan</div>
+                <div class="tab" data-tab="add-saving">Tambah Tabungan</div>
+            </div>
+
+            <div id="savings-list" class="tab-content active">
+                <div class="card">
+                    <div class="card-title">
+                        <i class="fas fa-history"></i> Riwayat Tabungan
+                    </div>
+                    <ul id="savings-history-list" class="list"></ul>
+                    <div id="empty-savings-history" class="empty-state d-none">
+                        <i class="fas fa-piggy-bank"></i>
+                        <p>Belum ada riwayat tabungan</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="add-saving" class="tab-content">
+                <div class="card">
+                    <div class="card-title">
+                        <i class="fas fa-plus-circle"></i> Tambah Tabungan Baru
+                    </div>
+                    <form id="savings-form">
+                        <div class="form-group">
+                            <label class="form-label" for="savings-amount">Jumlah (Rp)</label>
+                            <input type="number" id="savings-amount" class="form-control" placeholder="Contoh: 1500000" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="savings-date">Tanggal</label>
+                            <input type="date" id="savings-date" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="savings-notes">Catatan (Opsional)</label>
+                            <input type="text" id="savings-notes" class="form-control" placeholder="Contoh: Gaji bulan Januari">
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" id="cancel-saving">Batal</button>
+                            <button type="submit" class="btn btn-primary">Simpan Tabungan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seserahan Tab -->
+        <div id="seserahan-tab" class="tab-content">
+            <div class="tabs">
+                <div class="tab active" data-tab="items-list">Daftar Kebutuhan</div>
+                <div class="tab" data-tab="add-item">Tambah Kebutuhan</div>
+            </div>
+
+            <div id="items-list" class="tab-content active">
+                <div class="card">
+                    <div class="card-title">
+                        <i class="fas fa-shopping-cart"></i> Semua Kebutuhan Seserahan
+                    </div>
+                    <ul id="all-items-list" class="list"></ul>
+                    <div id="empty-items" class="empty-state d-none">
+                        <i class="fas fa-box-open"></i>
+                        <p>Belum ada kebutuhan seserahan</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="add-item" class="tab-content">
+                <div class="card">
+                    <div class="card-title">
+                        <i class="fas fa-plus-circle"></i> Tambah Kebutuhan Baru
+                    </div>
+                    <form id="item-form">
+                        <div class="form-group">
+                            <label class="form-label" for="item-name">Nama Barang</label>
+                            <input type="text" id="item-name" class="form-control" placeholder="Contoh: Cincin Tunangan" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="item-price">Perkiraan Harga (Rp)</label>
+                            <input type="number" id="item-price" class="form-control" placeholder="Contoh: 2500000" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="item-status">Status</label>
+                            <select id="item-status" class="form-select">
+                                <option value="pending">⏳ Belum dibeli</option>
+                                <option value="done">✅ Sudah dibeli</option>
+                            </select>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" id="cancel-item">Batal</button>
+                            <button type="submit" class="btn btn-primary">Simpan Kebutuhan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- History Tab -->
+        <div id="history-tab" class="tab-content">
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-history"></i> Riwayat Transaksi
+                </div>
+                <div class="tabs">
+                    <div class="tab active" data-tab="all-history">Semua</div>
+                    <div class="tab" data-tab="savings-history">Tabungan</div>
+                    <div class="tab" data-tab="expenses-history">Pengeluaran</div>
+                </div>
+
+                <div id="all-history" class="tab-content active">
+                    <div id="all-history-list"></div>
+                    <div id="empty-all-history" class="empty-state d-none">
+                        <i class="fas fa-history"></i>
+                        <p>Belum ada riwayat transaksi</p>
+                    </div>
+                </div>
+
+                <div id="savings-history" class="tab-content">
+                    <div id="savings-history-only-list"></div>
+                    <div id="empty-savings-only-history" class="empty-state d-none">
+                        <i class="fas fa-piggy-bank"></i>
+                        <p>Belum ada riwayat tabungan</p>
+                    </div>
+                </div>
+
+                <div id="expenses-history" class="tab-content">
+                    <div id="expenses-history-list"></div>
+                    <div id="empty-expenses-history" class="empty-state d-none">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p>Belum ada riwayat pengeluaran</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Management Card -->
+        <div class="card">
+            <div class="card-title">
+                <i class="fas fa-database"></i> Kelola Data
+            </div>
+            <div class="d-flex gap-10">
+                <button id="export-data" class="btn btn-secondary btn-small">
+                    <i class="fas fa-download"></i> Export Data
+                </button>
+                <button id="import-data" class="btn btn-secondary btn-small">
+                    <i class="fas fa-upload"></i> Import Data
+                </button>
+                <button id="reset-data" class="btn btn-danger btn-small">
+                    <i class="fas fa-trash"></i> Reset Data
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Floating Action Button -->
+    <button class="fab" id="fab">
+        <i class="fas fa-plus"></i>
+    </button>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active" data-tab="dashboard-tab">
+            <i class="fas fa-home nav-icon"></i>
+            <span class="nav-label">Dashboard</span>
+        </a>
+        <a href="#" class="nav-item" data-tab="savings-tab">
+            <i class="fas fa-piggy-bank nav-icon"></i>
+            <span class="nav-label">Tabungan</span>
+        </a>
+        <a href="#" class="nav-item" data-tab="seserahan-tab">
+            <i class="fas fa-gift nav-icon"></i>
+            <span class="nav-label">Seserahan</span>
+        </a>
+        <a href="#" class="nav-item" data-tab="history-tab">
+            <i class="fas fa-history nav-icon"></i>
+            <span class="nav-label">Riwayat</span>
+        </a>
+    </nav>
+
+    <!-- Modal for Editing/Deleting -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title" id="modal-title">Edit Data</div>
+                <button class="modal-close" id="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-form">
+                    <input type="hidden" id="edit-id">
+                    <input type="hidden" id="edit-type">
+                    
+                    <div id="edit-savings-fields">
+                        <div class="form-group">
+                            <label class="form-label" for="edit-savings-amount">Jumlah (Rp)</label>
+                            <input type="number" id="edit-savings-amount" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="edit-savings-date">Tanggal</label>
+                            <input type="date" id="edit-savings-date" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="edit-savings-notes">Catatan</label>
+                            <input type="text" id="edit-savings-notes" class="form-control">
+                        </div>
+                    </div>
+                    
+                    <div id="edit-item-fields">
+                        <div class="form-group">
+                            <label class="form-label" for="edit-item-name">Nama Barang</label>
+                            <input type="text" id="edit-item-name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="edit-item-price">Perkiraan Harga (Rp)</label>
+                            <input type="number" id="edit-item-price" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="edit-item-status">Status</label>
+                            <select id="edit-item-status" class="form-select">
+                                <option value="pending">⏳ Belum dibeli</option>
+                                <option value="done">✅ Sudah dibeli</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-danger" id="delete-item">Hapus</button>
+                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- File Input for Import (hidden) -->
+    <input type="file" id="import-file-input" accept=".json" style="display: none;">
+
+    <script>
+        // Data storage
+        let savings = [];
+        let items = [];
+        let targetAmount = 10000000; // Default target 10 juta
+        let currentTheme = 'light'; // Default theme
+
+        // Format currency to IDR
+        function formatCurrency(amount) {
+            return `Rp ${amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}`;
+        }
+
+        // Get current date in YYYY-MM-DD format
+        function getCurrentDate() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+        // Theme Management
+        function initTheme() {
+            // Check saved theme or prefer-color-scheme
+            const savedTheme = localStorage.getItem('weddingAppTheme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            if (savedTheme) {
+                currentTheme = savedTheme;
+            } else if (prefersDark) {
+                currentTheme = 'dark';
+            }
+            
+            applyTheme();
+        }
+
+        function applyTheme() {
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            localStorage.setItem('weddingAppTheme', currentTheme);
+            
+            // Update theme icon
+            const themeIcon = document.getElementById('theme-icon');
+            if (currentTheme === 'dark') {
+                themeIcon.className = 'fas fa-sun';
+                themeIcon.setAttribute('aria-label', 'Switch to light mode');
+            } else {
+                themeIcon.className = 'fas fa-moon';
+                themeIcon.setAttribute('aria-label', 'Switch to dark mode');
+            }
+            
+            // Update meta theme-color for mobile browsers
+            const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+            if (metaThemeColor) {
+                metaThemeColor.setAttribute('content', currentTheme === 'dark' ? '#121212' : '#f8f9fa');
+            }
+        }
+
+        function toggleTheme() {
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            applyTheme();
+        }
+
+        // Load data from localStorage
+        function loadData() {
+            const savedSavings = localStorage.getItem('weddingSavings');
+            const savedItems = localStorage.getItem('weddingItems');
+            const savedTarget = localStorage.getItem('weddingTarget');
+            
+            if (savedSavings) {
+                savings = JSON.parse(savedSavings);
+            }
+            
+            if (savedItems) {
+                items = JSON.parse(savedItems);
+            }
+            
+            if (savedTarget) {
+                targetAmount = parseInt(savedTarget);
+            }
+            
+            updateUI();
+        }
+
+        // Save data to localStorage
+        function saveData() {
+            localStorage.setItem('weddingSavings', JSON.stringify(savings));
+            localStorage.setItem('weddingItems', JSON.stringify(items));
+            localStorage.setItem('weddingTarget', targetAmount.toString());
+        }
+
+        // Calculate totals
+        function calculateTotals() {
+            const totalSavings = savings.reduce((sum, item) => sum + item.amount, 0);
+            const totalExpenses = items
+                .filter(item => item.status === 'done')
+                .reduce((sum, item) => sum + item.price, 0);
+            const remainingBalance = totalSavings - totalExpenses;
+            const progressPercentage = targetAmount > 0 ? Math.min(100, Math.round((totalSavings / targetAmount) * 100)) : 0;
+            
+            return {
+                totalSavings,
+                totalExpenses,
+                remainingBalance,
+                progressPercentage
+            };
+        }
+
+        // Update UI with current data
+        function updateUI() {
+            const totals = calculateTotals();
+            
+            // Update dashboard values
+            document.getElementById('total-savings').textContent = formatCurrency(totals.totalSavings);
+            document.getElementById('target-amount').textContent = formatCurrency(targetAmount);
+            document.getElementById('total-expenses').textContent = formatCurrency(totals.totalExpenses);
+            document.getElementById('remaining-balance').textContent = formatCurrency(totals.remainingBalance);
+            document.getElementById('progress-percentage').textContent = `${totals.progressPercentage}%`;
+            document.getElementById('progress-fill').style.width = `${totals.progressPercentage}%`;
+            
+            // Update recent savings
+            updateRecentSavings();
+            
+            // Update pending items
+            updatePendingItems();
+            
+            // Update savings history
+            updateSavingsHistory();
+            
+            // Update all items list
+            updateAllItemsList();
+            
+            // Update history lists
+            updateHistoryLists();
+        }
+
+        // Update recent savings list
+        function updateRecentSavings() {
+            const container = document.getElementById('recent-savings-list');
+            const emptyState = document.getElementById('empty-savings');
+            
+            if (savings.length === 0) {
+                container.innerHTML = '';
+                emptyState.classList.remove('d-none');
+                return;
+            }
+            
+            emptyState.classList.add('d-none');
+            
+            // Get 3 most recent savings
+            const recentSavings = [...savings]
+                .sort((a, b) => new Date(b.date) - new Date(a.date))
+                .slice(0, 3);
+            
+            let html = '';
+            recentSavings.forEach(item => {
+                const date = new Date(item.date).toLocaleDateString('id-ID', {
+                    day: 'numeric',
+                    month: 'short',
+                    year: 'numeric'
+                });
+                
+                html += `
+                    <div class="list-item" data-id="${item.id}" data-type="savings">
+                        <div class="item-info">
+                            <div class="item-title">${item.notes || 'Tabungan'}</div>
+                            <div class="item-subtitle">${date}</div>
+                        </div>
+                        <div class="item-amount">${formatCurrency(item.amount)}</div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+            
+            // Add click events
+            document.querySelectorAll('#recent-savings-list .list-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    const type = this.getAttribute('data-type');
+                    openEditModal(id, type);
+                });
+            });
+        }
+
+        // Update pending items list
+        function updatePendingItems() {
+            const container = document.getElementById('pending-items-list');
+            const emptyState = document.getElementById('empty-pending');
+            
+            const pendingItems = items.filter(item => item.status === 'pending');
+            
+            if (pendingItems.length === 0) {
+                container.innerHTML = '';
+                emptyState.classList.remove('d-none');
+                return;
+            }
+            
+            emptyState.classList.add('d-none');
+            
+            let html = '';
+            pendingItems.forEach(item => {
+                html += `
+                    <div class="list-item" data-id="${item.id}" data-type="item">
+                        <div class="item-info">
+                            <div class="item-title">${item.name}</div>
+                            <div class="item-subtitle">Perkiraan: ${formatCurrency(item.price)}</div>
+                        </div>
+                        <span class="item-status status-pending">⏳ Belum dibeli</span>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+            
+            // Add click events
+            document.querySelectorAll('#pending-items-list .list-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    const type = this.getAttribute('data-type');
+                    openEditModal(id, type);
+                });
+            });
+        }
+
+        // Update savings history list
+        function updateSavingsHistory() {
+            const container = document.getElementById('savings-history-list');
+            const emptyState = document.getElementById('empty-savings-history');
+            
+            if (savings.length === 0) {
+                container.innerHTML = '';
+                emptyState.classList.remove('d-none');
+                return;
+            }
+            
+            emptyState.classList.add('d-none');
+            
+            // Sort by date (newest first)
+            const sortedSavings = [...savings].sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            let html = '';
+            sortedSavings.forEach((item) => {
+                const date = new Date(item.date).toLocaleDateString('id-ID', {
+                    day: 'numeric',
+                    month: 'short',
+                    year: 'numeric'
+                });
+                
+                html += `
+                    <li class="list-item" data-id="${item.id}" data-type="savings">
+                        <div class="item-info">
+                            <div class="item-title">${item.notes || 'Tabungan'}</div>
+                            <div class="item-subtitle">${date}</div>
+                        </div>
+                        <div class="item-amount">${formatCurrency(item.amount)}</div>
+                    </li>
+                `;
+            });
+            
+            container.innerHTML = html;
+            
+            // Add click event to each savings item
+            document.querySelectorAll('#savings-history-list .list-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    const type = this.getAttribute('data-type');
+                    openEditModal(id, type);
+                });
+            });
+        }
+
+        // Update all items list
+        function updateAllItemsList() {
+            const container = document.getElementById('all-items-list');
+            const emptyState = document.getElementById('empty-items');
+            
+            if (items.length === 0) {
+                container.innerHTML = '';
+                emptyState.classList.remove('d-none');
+                return;
+            }
+            
+            emptyState.classList.add('d-none');
+            
+            let html = '';
+            items.forEach(item => {
+                const statusClass = item.status === 'done' ? 'status-done' : 'status-pending';
+                const statusText = item.status === 'done' ? '✅ Sudah dibeli' : '⏳ Belum dibeli';
+                
+                html += `
+                    <li class="list-item" data-id="${item.id}" data-type="item">
+                        <div class="item-info">
+                            <div class="item-title">${item.name}</div>
+                            <div class="item-subtitle">Perkiraan: ${formatCurrency(item.price)}</div>
+                        </div>
+                        <span class="item-status ${statusClass}">${statusText}</span>
+                    </li>
+                `;
+            });
+            
+            container.innerHTML = html;
+            
+            // Add click event to each item
+            document.querySelectorAll('#all-items-list .list-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    const type = this.getAttribute('data-type');
+                    openEditModal(id, type);
+                });
+            });
+        }
+
+        // Update history lists
+        function updateHistoryLists() {
+            updateAllHistoryList();
+            updateSavingsOnlyHistoryList();
+            updateExpensesHistoryList();
+        }
+
+        // Update all history list
+        function updateAllHistoryList() {
+            const container = document.getElementById('all-history-list');
+            const emptyState = document.getElementById('empty-all-history');
+            
+            // Combine savings and purchased items
+            const allHistory = [
+                ...savings.map(item => ({
+                    ...item,
+                    type: 'savings',
+                    displayDate: new Date(item.date)
+                })),
+                ...items
+                    .filter(item => item.status === 'done')
+                    .map(item => ({
+                        ...item,
+                        type: 'expense',
+                        amount: item.price,
+                        displayDate: new Date(item.purchasedDate || item.createdDate)
+                    }))
+            ];
+            
+            if (allHistory.length === 0) {
+                container.innerHTML = '';
+                emptyState.classList.remove('d-none');
+                return;
+            }
+            
+            emptyState.classList.add('d-none');
+            
+            // Sort by date (newest first)
+            allHistory.sort((a, b) => b.displayDate - a.displayDate);
+            
+            let html = '';
+            allHistory.forEach(item => {
+                const date = item.displayDate.toLocaleDateString('id-ID', {
+                    day: 'numeric',
+                    month: 'short',
+                    year: 'numeric'
+                });
+                
+                const isSavings = item.type === 'savings';
+                const icon = isSavings ? 'fa-piggy-bank' : 'fa-shopping-cart';
+                const title = isSavings ? (item.notes || 'Tabungan') : item.name;
+                const amountClass = isSavings ? 'item-amount' : 'item-amount stat-negative';
+                
+                html += `
+                    <div class="list-item">
+                        <div style="margin-right: 15px;">
+                            <i class="fas ${icon}" style="color: var(${isSavings ? '--success' : '--danger'});"></i>
+                        </div>
+                        <div class="item-info">
+                            <div class="item-title">${title}</div>
+                            <div class="item-subtitle">${date} • ${isSavings ? 'Tabungan' : 'Pembelian'}</div>
+                        </div>
+                        <div class="${amountClass}">${isSavings ? '+' : '-'} ${formatCurrency(item.amount)}</div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        // Update savings only history list
+        function updateSavingsOnlyHistoryList() {
+            const container = document.getElementById('savings-history-only-list');
+            const emptyState = document.getElementById('empty-savings-only-history');
+            
+            if (savings.length === 0) {
+                container.innerHTML = '';
+                emptyState.classList.remove('d-none');
+                return;
+            }
+            
+            emptyState.classList.add('d-none');
+            
+            // Sort by date (newest first)
+            const sortedSavings = [...savings].sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            let html = '';
+            sortedSavings.forEach(item => {
+                const date = new Date(item.date).toLocaleDateString('id-ID', {
+                    day: 'numeric',
+                    month: 'short',
+                    year: 'numeric'
+                });
+                
+                html += `
+                    <div class="list-item">
+                        <div style="margin-right: 15px;">
+                            <i class="fas fa-piggy-bank" style="color: var(--success);"></i>
+                        </div>
+                        <div class="item-info">
+                            <div class="item-title">${item.notes || 'Tabungan'}</div>
+                            <div class="item-subtitle">${date}</div>
+                        </div>
+                        <div class="item-amount">+ ${formatCurrency(item.amount)}</div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        // Update expenses history list
+        function updateExpensesHistoryList() {
+            const container = document.getElementById('expenses-history-list');
+            const emptyState = document.getElementById('empty-expenses-history');
+            
+            const purchasedItems = items.filter(item => item.status === 'done');
+            
+            if (purchasedItems.length === 0) {
+                container.innerHTML = '';
+                emptyState.classList.remove('d-none');
+                return;
+            }
+            
+            emptyState.classList.add('d-none');
+            
+            let html = '';
+            purchasedItems.forEach(item => {
+                const date = new Date(item.purchasedDate || item.createdDate).toLocaleDateString('id-ID', {
+                    day: 'numeric',
+                    month: 'short',
+                    year: 'numeric'
+                });
+                
+                html += `
+                    <div class="list-item">
+                        <div style="margin-right: 15px;">
+                            <i class="fas fa-shopping-cart" style="color: var(--danger);"></i>
+                        </div>
+                        <div class="item-info">
+                            <div class="item-title">${item.name}</div>
+                            <div class="item-subtitle">${date}</div>
+                        </div>
+                        <div class="item-amount stat-negative">- ${formatCurrency(item.price)}</div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        // Open edit modal
+        function openEditModal(id, type) {
+            const modal = document.getElementById('edit-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const editSavingsFields = document.getElementById('edit-savings-fields');
+            const editItemFields = document.getElementById('edit-item-fields');
+            
+            document.getElementById('edit-id').value = id;
+            document.getElementById('edit-type').value = type;
+            
+            if (type === 'savings') {
+                const item = savings.find(s => s.id === id);
+                if (item) {
+                    modalTitle.textContent = 'Edit Tabungan';
+                    editSavingsFields.classList.remove('d-none');
+                    editItemFields.classList.add('d-none');
+                    
+                    document.getElementById('edit-savings-amount').value = item.amount;
+                    document.getElementById('edit-savings-date').value = item.date;
+                    document.getElementById('edit-savings-notes').value = item.notes || '';
+                }
+            } else if (type === 'item') {
+                const item = items.find(i => i.id === id);
+                if (item) {
+                    modalTitle.textContent = 'Edit Kebutuhan';
+                    editSavingsFields.classList.add('d-none');
+                    editItemFields.classList.remove('d-none');
+                    
+                    document.getElementById('edit-item-name').value = item.name;
+                    document.getElementById('edit-item-price').value = item.price;
+                    document.getElementById('edit-item-status').value = item.status;
+                }
+            }
+            
+            modal.classList.add('active');
+        }
+
+        // Close edit modal
+        function closeEditModal() {
+            document.getElementById('edit-modal').classList.remove('active');
+        }
+
+        // Generate unique ID
+        function generateId() {
+            return Date.now().toString(36) + Math.random().toString(36).substr(2);
+        }
+
+        // Initialize the app
+        function initApp() {
+            // Initialize theme
+            initTheme();
+            
+            // Set current date in forms
+            document.getElementById('savings-date').value = getCurrentDate();
+            
+            // Load data from localStorage
+            loadData();
+            
+            // Setup event listeners
+            
+            // Theme toggle
+            document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+            
+            // Bottom navigation
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Update active nav item
+                    document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show selected tab
+                    const tabId = this.getAttribute('data-tab');
+                    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+                    document.getElementById(tabId).classList.add('active');
+                    
+                    // Reset sub-tabs to first tab
+                    if (tabId === 'savings-tab') {
+                        document.querySelectorAll('#savings-tab .tab').forEach(tab => tab.classList.remove('active'));
+                        document.querySelectorAll('#savings-tab .tab-content').forEach(content => content.classList.remove('active'));
+                        document.querySelector('#savings-tab .tab[data-tab="savings-list"]').classList.add('active');
+                        document.getElementById('savings-list').classList.add('active');
+                    } else if (tabId === 'seserahan-tab') {
+                        document.querySelectorAll('#seserahan-tab .tab').forEach(tab => tab.classList.remove('active'));
+                        document.querySelectorAll('#seserahan-tab .tab-content').forEach(content => content.classList.remove('active'));
+                        document.querySelector('#seserahan-tab .tab[data-tab="items-list"]').classList.add('active');
+                        document.getElementById('items-list').classList.add('active');
+                    } else if (tabId === 'history-tab') {
+                        document.querySelectorAll('#history-tab .tab').forEach(tab => tab.classList.remove('active'));
+                        document.querySelectorAll('#history-tab .tab-content').forEach(content => content.classList.remove('active'));
+                        document.querySelector('#history-tab .tab[data-tab="all-history"]').classList.add('active');
+                        document.getElementById('all-history').classList.add('active');
+                    }
+                    
+                    // Scroll ke atas
+                    window.scrollTo(0, 0);
+                });
+            });
+            
+            // Sub-tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const tabId = this.getAttribute('data-tab');
+                    const parentId = this.closest('.tab-content')?.id || this.closest('.card')?.id;
+                    
+                    // Update active tab
+                    this.parentElement.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show selected content
+                    if (parentId === 'savings-tab' || parentId === 'seserahan-tab') {
+                        document.querySelectorAll(`#${parentId} .tab-content`).forEach(content => content.classList.remove('active'));
+                        document.getElementById(tabId).classList.add('active');
+                    } else if (this.closest('.card')) {
+                        const containerId = this.closest('.card').querySelector('.tab-content.active').id;
+                        document.querySelectorAll(`#${containerId} .tab-content`).forEach(content => content.classList.remove('active'));
+                        document.getElementById(tabId).classList.add('active');
+                    }
+                });
+            });
+            
+            // FAB button
+            document.getElementById('fab').addEventListener('click', function() {
+                // Determine which tab is active
+                const activeNav = document.querySelector('.nav-item.active');
+                const activeTab = activeNav ? activeNav.getAttribute('data-tab') : 'dashboard-tab';
+                
+                if (activeTab === 'savings-tab') {
+                    // Switch to add savings form
+                    document.querySelectorAll('#savings-tab .tab').forEach(tab => tab.classList.remove('active'));
+                    document.querySelectorAll('#savings-tab .tab-content').forEach(content => content.classList.remove('active'));
+                    document.querySelector('#savings-tab .tab[data-tab="add-saving"]').classList.add('active');
+                    document.getElementById('add-saving').classList.add('active');
+                    
+                    // Focus on amount field
+                    setTimeout(() => {
+                        document.getElementById('savings-amount').focus();
+                    }, 300);
+                } else if (activeTab === 'seserahan-tab') {
+                    // Switch to add item form
+                    document.querySelectorAll('#seserahan-tab .tab').forEach(tab => tab.classList.remove('active'));
+                    document.querySelectorAll('#seserahan-tab .tab-content').forEach(content => content.classList.remove('active'));
+                    document.querySelector('#seserahan-tab .tab[data-tab="add-item"]').classList.add('active');
+                    document.getElementById('add-item').classList.add('active');
+                    
+                    // Focus on name field
+                    setTimeout(() => {
+                        document.getElementById('item-name').focus();
+                    }, 300);
+                } else {
+                    // For other tabs, show savings form by default
+                    document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+                    
+                    document.querySelector('.nav-item[data-tab="savings-tab"]').classList.add('active');
+                    document.getElementById('savings-tab').classList.add('active');
+                    
+                    document.querySelectorAll('#savings-tab .tab').forEach(tab => tab.classList.remove('active'));
+                    document.querySelectorAll('#savings-tab .tab-content').forEach(content => content.classList.remove('active'));
+                    document.querySelector('#savings-tab .tab[data-tab="add-saving"]').classList.add('active');
+                    document.getElementById('add-saving').classList.add('active');
+                    
+                    setTimeout(() => {
+                        document.getElementById('savings-amount').focus();
+                    }, 300);
+                }
+            });
+            
+            // Savings form
+            document.getElementById('savings-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const amount = parseInt(document.getElementById('savings-amount').value);
+                const date = document.getElementById('savings-date').value;
+                const notes = document.getElementById('savings-notes').value;
+                
+                if (amount && date) {
+                    const newSaving = {
+                        id: generateId(),
+                        amount,
+                        date,
+                        notes,
+                        createdDate: new Date().toISOString()
+                    };
+                    
+                    savings.push(newSaving);
+                    saveData();
+                    updateUI();
+                    
+                    // Reset form and switch to list view
+                    this.reset();
+                    document.getElementById('savings-date').value = getCurrentDate();
+                    
+                    document.querySelectorAll('#savings-tab .tab').forEach(tab => tab.classList.remove('active'));
+                    document.querySelectorAll('#savings-tab .tab-content').forEach(content => content.classList.remove('active'));
+                    document.querySelector('#savings-tab .tab[data-tab="savings-list"]').classList.add('active');
+                    document.getElementById('savings-list').classList.add('active');
+                    
+                    // Show success message
+                    alert('Tabungan berhasil disimpan!');
+                }
+            });
+            
+            // Cancel savings button
+            document.getElementById('cancel-saving').addEventListener('click', function() {
+                document.getElementById('savings-form').reset();
+                document.getElementById('savings-date').value = getCurrentDate();
+                
+                document.querySelectorAll('#savings-tab .tab').forEach(tab => tab.classList.remove('active'));
+                document.querySelectorAll('#savings-tab .tab-content').forEach(content => content.classList.remove('active'));
+                document.querySelector('#savings-tab .tab[data-tab="savings-list"]').classList.add('active');
+                document.getElementById('savings-list').classList.add('active');
+            });
+            
+            // Item form
+            document.getElementById('item-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('item-name').value;
+                const price = parseInt(document.getElementById('item-price').value);
+                const status = document.getElementById('item-status').value;
+                
+                if (name && price) {
+                    const newItem = {
+                        id: generateId(),
+                        name,
+                        price,
+                        status,
+                        createdDate: new Date().toISOString()
+                    };
+                    
+                    if (status === 'done') {
+                        newItem.purchasedDate = new Date().toISOString();
+                    }
+                    
+                    items.push(newItem);
+                    saveData();
+                    updateUI();
+                    
+                    // Reset form and switch to list view
+                    this.reset();
+                    
+                    document.querySelectorAll('#seserahan-tab .tab').forEach(tab => tab.classList.remove('active'));
+                    document.querySelectorAll('#seserahan-tab .tab-content').forEach(content => content.classList.remove('active'));
+                    document.querySelector('#seserahan-tab .tab[data-tab="items-list"]').classList.add('active');
+                    document.getElementById('items-list').classList.add('active');
+                    
+                    // Show success message
+                    alert('Kebutuhan berhasil disimpan!');
+                }
+            });
+            
+            // Cancel item button
+            document.getElementById('cancel-item').addEventListener('click', function() {
+                document.getElementById('item-form').reset();
+                
+                document.querySelectorAll('#seserahan-tab .tab').forEach(tab => tab.classList.remove('active'));
+                document.querySelectorAll('#seserahan-tab .tab-content').forEach(content => content.classList.remove('active'));
+                document.querySelector('#seserahan-tab .tab[data-tab="items-list"]').classList.add('active');
+                document.getElementById('items-list').classList.add('active');
+            });
+            
+            // Edit form
+            document.getElementById('edit-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const id = document.getElementById('edit-id').value;
+                const type = document.getElementById('edit-type').value;
+                
+                if (type === 'savings') {
+                    const amount = parseInt(document.getElementById('edit-savings-amount').value);
+                    const date = document.getElementById('edit-savings-date').value;
+                    const notes = document.getElementById('edit-savings-notes').value;
+                    
+                    const index = savings.findIndex(item => item.id === id);
+                    if (index !== -1) {
+                        savings[index] = {
+                            ...savings[index],
+                            amount,
+                            date,
+                            notes
+                        };
+                    }
+                } else if (type === 'item') {
+                    const name = document.getElementById('edit-item-name').value;
+                    const price = parseInt(document.getElementById('edit-item-price').value);
+                    const status = document.getElementById('edit-item-status').value;
+                    
+                    const index = items.findIndex(item => item.id === id);
+                    if (index !== -1) {
+                        const oldStatus = items[index].status;
+                        items[index] = {
+                            ...items[index],
+                            name,
+                            price,
+                            status
+                        };
+                        
+                        // If status changed to "done", add purchased date
+                        if (oldStatus !== 'done' && status === 'done') {
+                            items[index].purchasedDate = new Date().toISOString();
+                        }
+                    }
+                }
+                
+                saveData();
+                updateUI();
+                closeEditModal();
+                alert('Data berhasil diperbarui!');
+            });
+            
+            // Delete button
+            document.getElementById('delete-item').addEventListener('click', function() {
+                const id = document.getElementById('edit-id').value;
+                const type = document.getElementById('edit-type').value;
+                
+                if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
+                    if (type === 'savings') {
+                        savings = savings.filter(item => item.id !== id);
+                    } else if (type === 'item') {
+                        items = items.filter(item => item.id !== id);
+                    }
+                    
+                    saveData();
+                    updateUI();
+                    closeEditModal();
+                    alert('Data berhasil dihapus!');
+                }
+            });
+            
+            // Close modal button
+            document.getElementById('close-modal').addEventListener('click', closeEditModal);
+            
+            // Close modal when clicking outside
+            document.getElementById('edit-modal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeEditModal();
+                }
+            });
+            
+            // Export data
+            document.getElementById('export-data').addEventListener('click', function() {
+                const data = {
+                    savings,
+                    items,
+                    targetAmount,
+                    exportDate: new Date().toISOString(),
+                    theme: currentTheme
+                };
+                
+                const dataStr = JSON.stringify(data, null, 2);
+                const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+                
+                const exportFileDefaultName = `backup-seserahan-${new Date().toISOString().slice(0,10)}.json`;
+                
+                const linkElement = document.createElement('a');
+                linkElement.setAttribute('href', dataUri);
+                linkElement.setAttribute('download', exportFileDefaultName);
+                linkElement.click();
+                
+                alert('Data berhasil diexport!');
+            });
+            
+            // Import data
+            document.getElementById('import-data').addEventListener('click', function() {
+                document.getElementById('import-file-input').click();
+            });
+            
+            document.getElementById('import-file-input').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (!file) return;
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const data = JSON.parse(e.target.result);
+                        
+                        if (confirm('Import data akan mengganti semua data yang ada. Lanjutkan?')) {
+                            savings = data.savings || [];
+                            items = data.items || [];
+                            targetAmount = data.targetAmount || 10000000;
+                            
+                            // Import theme jika ada
+                            if (data.theme) {
+                                currentTheme = data.theme;
+                                applyTheme();
+                            }
+                            
+                            saveData();
+                            updateUI();
+                            alert('Data berhasil diimport!');
+                        }
+                    } catch (error) {
+                        alert('File tidak valid! Pastikan file backup yang dipilih benar.');
+                    }
+                    
+                    // Reset file input
+                    document.getElementById('import-file-input').value = '';
+                };
+                
+                reader.readAsText(file);
+            });
+            
+            // Reset data
+            document.getElementById('reset-data').addEventListener('click', function() {
+                if (confirm('Apakah Anda yakin ingin mereset semua data? Tindakan ini tidak dapat dibatalkan.')) {
+                    savings = [];
+                    items = [];
+                    targetAmount = 10000000;
+                    
+                    saveData();
+                    updateUI();
+                    alert('Semua data telah direset!');
+                }
+            });
+            
+            // Update target amount on click
+            document.getElementById('target-amount').addEventListener('click', function() {
+                const newTarget = prompt('Masukkan target dana baru (Rp):', formatCurrency(targetAmount).replace('Rp ', ''));
+                if (newTarget) {
+                    const cleanedTarget = parseInt(newTarget.replace(/\./g, ''));
+                    if (!isNaN(cleanedTarget) && cleanedTarget > 0) {
+                        targetAmount = cleanedTarget;
+                        saveData();
+                        updateUI();
+                        alert('Target dana berhasil diperbarui!');
+                    } else {
+                        alert('Format angka tidak valid!');
+                    }
+                }
+            });
+            
+            // Fix untuk iOS Safari: tambahkan class 'cursor: pointer' untuk elemen yang dapat diklik
+            document.querySelectorAll('.nav-item, .tab, .btn, .list-item, .stat-card, .fab, .theme-toggle').forEach(el => {
+                el.style.cursor = 'pointer';
+            });
+            
+            // Tambahkan event listener sederhana untuk list items
+            document.addEventListener('click', function(e) {
+                // Untuk list items yang ada di recent savings
+                if (e.target.closest('.list-item[data-id]')) {
+                    const listItem = e.target.closest('.list-item[data-id]');
+                    const id = listItem.getAttribute('data-id');
+                    const type = listItem.getAttribute('data-type');
+                    openEditModal(id, type);
+                }
+            });
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initApp);
+        
+        // Juga inisialisasi saat halaman fully loaded
+        window.addEventListener('load', function() {
+            // Scroll ke atas untuk menghindari masalah visual di iOS
+            window.scrollTo(0, 0);
+        });
+        
+        // Fix untuk iOS: cegah perilaku default pada elemen yang dapat diklik
+        document.addEventListener('touchstart', function(e) {
+            // Untuk elemen yang dapat diklik, biarkan perilaku default
+            if (e.target.closest('.nav-item') || 
+                e.target.closest('.tab') || 
+                e.target.closest('.btn') || 
+                e.target.closest('.fab') ||
+                e.target.closest('.list-item') ||
+                e.target.closest('.stat-card') ||
+                e.target.closest('.theme-toggle')) {
+                // Biarkan default untuk elemen ini
+                return;
+            }
+            
+            // Untuk elemen lain, cegah zoom
+            if (e.touches.length > 1) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+    </script>
+</body>
+</html>
