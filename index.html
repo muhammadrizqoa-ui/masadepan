@@ -1,30 +1,22 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>WeddingSaver — Kelola Dana Seserahan</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#0c0a1d">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="theme-color" content="#0c0a1d" />
     <style>
-        /* ===== SAMA PERSIS DENGAN FILE YANG ANDA BERIKAN ===== */
-        /* Saya tidak akan mengulang semua CSS di sini untuk menghemat panjang, */
-        /* tapi akan saya sertakan semua style yang ada di file Anda. */
-        /* Pada implementasi nyata, saya akan menulis ulang seluruh CSS. */
-        /* Karena keterbatasan ruang, saya akan asumsikan style-nya sama persis. */
-        /* Namun untuk keperluan jawaban, saya berikan versi lengkap di bawah. */
-        *,
-        *::before,
-        *::after {
+        /* Reset & Variables */
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
         }
-
         :root {
             --bg-primary: #0c0a1d;
             --bg-secondary: #14112b;
@@ -32,34 +24,26 @@
             --bg-card-hover: rgba(255, 255, 255, 0.07);
             --bg-card-solid: #1a1738;
             --border-subtle: rgba(255, 255, 255, 0.06);
-            --border-glow: rgba(255, 215, 100, 0.15);
             --text-primary: #f0ede8;
             --text-secondary: #a8a3b8;
             --text-muted: #6b6580;
             --gold: #f5c842;
-            --gold-light: #fae07a;
             --gold-dark: #d4a830;
             --gold-glow: rgba(245, 200, 66, 0.25);
-            --accent-blue: #5b7cfa;
             --accent-green: #3dd68c;
             --accent-rose: #f96d7a;
-            --accent-purple: #9f7cfa;
-            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.45);
-            --shadow-glow: 0 0 60px rgba(245, 200, 66, 0.04);
+            --accent-blue: #5b7cfa;
             --radius: 20px;
             --radius-sm: 12px;
             --radius-xs: 8px;
             --safe-top: env(safe-area-inset-top, 0px);
             --safe-bottom: env(safe-area-inset-bottom, 0px);
             --nav-height: 72px;
-            --header-height: 80px;
             --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-
         html {
             scroll-behavior: smooth;
         }
-
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: var(--bg-primary);
@@ -71,132 +55,1115 @@
             min-height: 100dvh;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
-
-        /* ... dan seterusnya, semua style dari file Anda ... */
-
-        /* Karena panjang, saya akan langsung ke script yang terintegrasi */
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold-dark);
+            border-radius: 4px;
+        }
+        .container {
+            width: 100%;
+            max-width: 540px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* Header */
+        .header {
+            padding: 20px 0 12px;
+            background: var(--bg-primary);
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            border-bottom: 1px solid var(--border-subtle);
+            backdrop-filter: blur(18px) saturate(1.2);
+            -webkit-backdrop-filter: blur(18px) saturate(1.2);
+        }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .header-brand .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #0c0a1d;
+            font-weight: 800;
+            box-shadow: 0 4px 16px var(--gold-glow);
+        }
+        .header-brand h1 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .header-brand h1 span {
+            color: var(--gold);
+            -webkit-text-fill-color: var(--gold);
+        }
+        .header-action {
+            display: flex;
+            gap: 8px;
+        }
+        .header-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--border-subtle);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+        .header-btn:active {
+            transform: scale(0.92);
+        }
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeUp 0.45s ease;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Hero Stats */
+        .hero-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin: 20px 0 18px;
+        }
+        .stat-hero {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius);
+            padding: 18px 16px;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            position: relative;
+            overflow: hidden;
+        }
+        .stat-hero .stat-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .stat-hero .stat-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-top: 4px;
+            font-variant-numeric: tabular-nums;
+        }
+        .stat-hero .stat-value.gold {
+            color: var(--gold);
+        }
+        .stat-hero .stat-value.green {
+            color: var(--accent-green);
+        }
+        .stat-hero .stat-value.rose {
+            color: var(--accent-rose);
+        }
+        .stat-hero .stat-value.blue {
+            color: var(--accent-blue);
+        }
+        .stat-hero .stat-change {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        .stat-hero .stat-change.positive {
+            color: var(--accent-green);
+        }
+        .stat-hero .stat-change.negative {
+            color: var(--accent-rose);
+        }
+        .stat-hero .stat-icon-bg {
+            position: absolute;
+            right: -8px;
+            bottom: -8px;
+            font-size: 3.2rem;
+            opacity: 0.04;
+            pointer-events: none;
+        }
+        /* Progress Card */
+        .progress-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 18px;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        .progress-card .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 10px;
+        }
+        .progress-card .progress-header .label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+        .progress-card .progress-header .percentage {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        .progress-card .progress-track {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 100px;
+            overflow: hidden;
+        }
+        .progress-card .progress-track .progress-fill {
+            height: 100%;
+            border-radius: 100px;
+            background: linear-gradient(90deg, var(--gold-dark), var(--gold));
+            width: 0%;
+            transition: width 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+            box-shadow: 0 0 20px var(--gold-glow);
+        }
+        .progress-card .progress-footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        .progress-card .progress-footer .highlight {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        /* Section Card */
+        .section-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius);
+            padding: 18px 18px 6px;
+            margin-bottom: 18px;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        .section-card .section-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+        }
+        .section-card .section-head .title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .section-card .section-head .title i {
+            color: var(--gold);
+            font-size: 0.85rem;
+        }
+        .section-card .section-head .action-link {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        .section-card .section-head .action-link:active {
+            color: var(--gold);
+        }
+        /* List Item */
+        .list-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-subtle);
+            cursor: pointer;
+            transition: var(--transition);
+            gap: 12px;
+        }
+        .list-item:last-child {
+            border-bottom: none;
+        }
+        .list-item:active {
+            background: var(--bg-card-hover);
+            margin: 0 -12px;
+            padding: 12px;
+            border-radius: var(--radius-xs);
+        }
+        .list-item .item-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-subtle);
+        }
+        .list-item .item-avatar.gold {
+            background: var(--gold-glow);
+            border-color: var(--gold-glow);
+            color: var(--gold);
+        }
+        .list-item .item-avatar.green {
+            background: rgba(61, 214, 140, 0.12);
+            border-color: rgba(61, 214, 140, 0.15);
+            color: var(--accent-green);
+        }
+        .list-item .item-avatar.rose {
+            background: rgba(249, 109, 122, 0.12);
+            border-color: rgba(249, 109, 122, 0.15);
+            color: var(--accent-rose);
+        }
+        .list-item .item-body {
+            flex: 1;
+            min-width: 0;
+        }
+        .list-item .item-body .name {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .list-item .item-body .meta {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 1px;
+        }
+        .list-item .item-amount {
+            font-weight: 700;
+            font-size: 0.95rem;
+            font-variant-numeric: tabular-nums;
+            flex-shrink: 0;
+        }
+        .list-item .item-amount.gold {
+            color: var(--gold);
+        }
+        .list-item .item-amount.green {
+            color: var(--accent-green);
+        }
+        .list-item .item-amount.rose {
+            color: var(--accent-rose);
+        }
+        .list-item .item-badge {
+            font-size: 0.6rem;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 100px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            flex-shrink: 0;
+        }
+        .item-badge.pending {
+            background: rgba(245, 200, 66, 0.12);
+            color: var(--gold);
+            border: 1px solid rgba(245, 200, 66, 0.12);
+        }
+        .item-badge.done {
+            background: rgba(61, 214, 140, 0.12);
+            color: var(--accent-green);
+            border: 1px solid rgba(61, 214, 140, 0.12);
+        }
+        .empty-state {
+            text-align: center;
+            padding: 36px 16px 28px;
+            color: var(--text-muted);
+        }
+        .empty-state .empty-icon {
+            font-size: 2.4rem;
+            opacity: 0.2;
+            margin-bottom: 12px;
+        }
+        .empty-state .empty-title {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+        .empty-state .empty-desc {
+            font-size: 0.8rem;
+            margin-top: 4px;
+        }
+        /* Sub Tabs */
+        .sub-tabs {
+            display: flex;
+            gap: 4px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            padding: 4px;
+            margin-bottom: 18px;
+        }
+        .sub-tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px 12px;
+            border-radius: var(--radius-xs);
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+            background: transparent;
+            border: none;
+            font-family: inherit;
+        }
+        .sub-tab.active {
+            background: var(--bg-card-solid);
+            color: var(--text-primary);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+        }
+        .sub-tab-content {
+            display: none;
+            animation: fadeUp 0.3s ease;
+        }
+        .sub-tab-content.active {
+            display: block;
+        }
+        /* Forms */
+        .form-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius);
+            padding: 20px;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        .form-group {
+            margin-bottom: 16px;
+        }
+        .form-group .form-label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 6px;
+        }
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-xs);
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: var(--transition);
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 4px var(--gold-glow);
+            background: rgba(255, 255, 255, 0.06);
+        }
+        .form-control::placeholder {
+            color: var(--text-muted);
+        }
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .form-actions .btn {
+            flex: 1;
+        }
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 20px;
+            border-radius: var(--radius-xs);
+            font-weight: 600;
+            font-size: 0.9rem;
+            font-family: inherit;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            touch-action: manipulation;
+        }
+        .btn:active {
+            transform: scale(0.97);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: #0c0a1d;
+            box-shadow: 0 4px 20px var(--gold-glow);
+        }
+        .btn-secondary {
+            background: var(--bg-card-solid);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-subtle);
+        }
+        .btn-danger {
+            background: rgba(249, 109, 122, 0.12);
+            color: var(--accent-rose);
+            border: 1px solid rgba(249, 109, 122, 0.15);
+        }
+        .btn-sm {
+            padding: 8px 14px;
+            font-size: 0.75rem;
+        }
+        /* FAB */
+        .fab {
+            position: fixed;
+            bottom: calc(var(--nav-height) + 24px + var(--safe-bottom));
+            right: 20px;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: #0c0a1d;
+            border: none;
+            font-size: 1.4rem;
+            box-shadow: 0 6px 28px var(--gold-glow);
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            touch-action: manipulation;
+        }
+        .fab:active {
+            transform: scale(0.92);
+        }
+        /* Bottom Nav */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(12, 10, 29, 0.92);
+            backdrop-filter: blur(20px) saturate(1.4);
+            -webkit-backdrop-filter: blur(20px) saturate(1.4);
+            border-top: 1px solid var(--border-subtle);
+            padding: 8px 12px var(--safe-bottom);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 100;
+            height: var(--nav-height);
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            color: var(--text-muted);
+            padding: 6px 12px;
+            border-radius: var(--radius-xs);
+            transition: var(--transition);
+            cursor: pointer;
+            flex: 1;
+            max-width: 72px;
+            background: transparent;
+            border: none;
+            font-family: inherit;
+        }
+        .nav-item:active {
+            transform: scale(0.92);
+        }
+        .nav-item .nav-icon {
+            font-size: 1.2rem;
+        }
+        .nav-item .nav-label {
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+        .nav-item.active {
+            color: var(--gold);
+        }
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 200;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius);
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+            animation: modalSlide 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        @keyframes modalSlide {
+            from {
+                transform: translateY(40px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        .modal-header {
+            padding: 18px 20px;
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-header .modal-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .modal-close {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: var(--bg-card);
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-close:active {
+            transform: scale(0.9);
+        }
+        .modal-body {
+            padding: 20px;
+        }
+        .data-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 4px;
+        }
+        .data-actions .btn {
+            flex: 1;
+            min-width: 80px;
+        }
+        .d-none {
+            display: none !important;
+        }
+        .gap-8 {
+            gap: 8px;
+        }
+        /* Responsive */
+        @media (min-width: 640px) {
+            .hero-stats {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        @media (max-width: 420px) {
+            .hero-stats {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .stat-hero .stat-value {
+                font-size: 1.2rem;
+            }
+            .header-brand h1 {
+                font-size: 1.1rem;
+            }
+        }
+        /* Safari Fix */
+        @supports (-webkit-touch-callout: none) {
+            .form-control,
+            .btn,
+            .sub-tab,
+            .nav-item {
+                font-size: 16px !important;
+            }
+        }
     </style>
 </head>
-<body>
-    <!-- ===== SEMUA KONTEN HTML SAMA PERSIS DENGAN FILE ANDA ===== -->
-    <!-- Saya tidak akan mengulang seluruh HTML di sini, tetapi pada implementasi nyata, semua elemen tetap sama. -->
-    <!-- Yang diubah hanya bagian script. -->
 
-    <!-- ===== SCRIPT TERINTEGRASI GOOGLE SHEETS ===== -->
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container header-inner">
+            <div class="header-brand">
+                <div class="logo-icon">W</div>
+                <h1>Wedding<span>Saver</span></h1>
+            </div>
+            <div class="header-action">
+                <button class="header-btn" id="headerTargetBtn" aria-label="Target Dana">
+                    <i class="fas fa-bullseye"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="container">
+
+        <!-- DASHBOARD -->
+        <div id="dashboard-tab" class="tab-content active">
+            <div class="hero-stats">
+                <div class="stat-hero">
+                    <div class="stat-label"><i class="fas fa-piggy-bank"></i> Tabungan</div>
+                    <div class="stat-value gold" id="total-savings">Rp 0</div>
+                    <div class="stat-change" id="savings-change">+ Rp 0 bulan ini</div>
+                    <div class="stat-icon-bg"><i class="fas fa-piggy-bank"></i></div>
+                </div>
+                <div class="stat-hero">
+                    <div class="stat-label"><i class="fas fa-bullseye"></i> Target</div>
+                    <div class="stat-value blue" id="target-amount">Rp 10.000.000</div>
+                    <div class="stat-change">Klik untuk ubah</div>
+                    <div class="stat-icon-bg"><i class="fas fa-flag"></i></div>
+                </div>
+                <div class="stat-hero">
+                    <div class="stat-label"><i class="fas fa-shopping-bag"></i> Belanja</div>
+                    <div class="stat-value rose" id="total-expenses">Rp 0</div>
+                    <div class="stat-change negative" id="expenses-change">- Rp 0</div>
+                    <div class="stat-icon-bg"><i class="fas fa-receipt"></i></div>
+                </div>
+                <div class="stat-hero">
+                    <div class="stat-label"><i class="fas fa-coins"></i> Sisa</div>
+                    <div class="stat-value green" id="remaining-balance">Rp 0</div>
+                    <div class="stat-change" id="balance-status">—</div>
+                    <div class="stat-icon-bg"><i class="fas fa-circle-check"></i></div>
+                </div>
+            </div>
+
+            <div class="progress-card">
+                <div class="progress-header">
+                    <span class="label">Progres menuju target</span>
+                    <span class="percentage" id="progress-percentage">0%</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+                </div>
+                <div class="progress-footer">
+                    <span>Terkumpul: <span class="highlight" id="progress-saved">Rp 0</span></span>
+                    <span>Target: <span class="highlight" id="progress-target">Rp 10.000.000</span></span>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <div class="section-head">
+                    <div class="title"><i class="fas fa-clock-rotate-left"></i> Tabungan Terbaru</div>
+                    <span class="action-link" id="goto-savings">Lihat semua →</span>
+                </div>
+                <div id="recent-savings-list"></div>
+                <div id="empty-savings" class="empty-state d-none">
+                    <div class="empty-icon"><i class="fas fa-piggy-bank"></i></div>
+                    <div class="empty-title">Belum ada tabungan</div>
+                    <div class="empty-desc">Mulai menabung untuk seserahanmu</div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <div class="section-head">
+                    <div class="title"><i class="fas fa-list-check"></i> Kebutuhan Belum Dibeli</div>
+                    <span class="action-link" id="goto-items">Lihat semua →</span>
+                </div>
+                <div id="pending-items-list"></div>
+                <div id="empty-pending" class="empty-state d-none">
+                    <div class="empty-icon"><i class="fas fa-circle-check"></i></div>
+                    <div class="empty-title">Semua sudah dibeli!</div>
+                    <div class="empty-desc">Selamat, semua kebutuhan seserahan terpenuhi</div>
+                </div>
+            </div>
+
+            <div class="section-card" style="padding-bottom:18px;">
+                <div class="section-head">
+                    <div class="title"><i class="fas fa-database"></i> Kelola Data</div>
+                </div>
+                <div class="data-actions">
+                    <button class="btn btn-secondary btn-sm" id="export-data"><i class="fas fa-download"></i> Export</button>
+                    <button class="btn btn-secondary btn-sm" id="import-data"><i class="fas fa-upload"></i> Import</button>
+                    <button class="btn btn-danger btn-sm" id="reset-data"><i class="fas fa-trash-can"></i> Reset</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SAVINGS TAB -->
+        <div id="savings-tab" class="tab-content">
+            <div class="sub-tabs">
+                <button class="sub-tab active" data-tab="savings-list">Riwayat</button>
+                <button class="sub-tab" data-tab="add-saving">Tambah</button>
+            </div>
+            <div id="savings-list" class="sub-tab-content active">
+                <div class="section-card" style="padding-bottom:8px;">
+                    <div class="section-head">
+                        <div class="title"><i class="fas fa-list-ul"></i> Semua Tabungan</div>
+                        <span class="action-link" id="total-savings-count">0 item</span>
+                    </div>
+                    <div id="savings-history-list"></div>
+                    <div id="empty-savings-history" class="empty-state d-none">
+                        <div class="empty-icon"><i class="fas fa-piggy-bank"></i></div>
+                        <div class="empty-title">Belum ada riwayat</div>
+                        <div class="empty-desc">Tambahkan tabungan pertamamu</div>
+                    </div>
+                </div>
+            </div>
+            <div id="add-saving" class="sub-tab-content">
+                <div class="form-card">
+                    <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
+                        <i class="fas fa-circle-plus" style="color:var(--gold);font-size:1.2rem;"></i>
+                        <span style="font-weight:600;font-size:1rem;">Tambah Tabungan Baru</span>
+                    </div>
+                    <form id="savings-form">
+                        <div class="form-group">
+                            <label class="form-label" for="savings-amount">Jumlah (Rp)</label>
+                            <input type="number" id="savings-amount" class="form-control" placeholder="1500000" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="savings-date">Tanggal</label>
+                            <input type="date" id="savings-date" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="savings-notes">Catatan <span style="color:var(--text-muted);font-weight:400;text-transform:none;">(opsional)</span></label>
+                            <input type="text" id="savings-notes" class="form-control" placeholder="Gaji, bonus, dll">
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" id="cancel-saving">Batal</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- SESERAHAN TAB -->
+        <div id="seserahan-tab" class="tab-content">
+            <div class="sub-tabs">
+                <button class="sub-tab active" data-tab="items-list">Daftar</button>
+                <button class="sub-tab" data-tab="add-item">Tambah</button>
+            </div>
+            <div id="items-list" class="sub-tab-content active">
+                <div class="section-card" style="padding-bottom:8px;">
+                    <div class="section-head">
+                        <div class="title"><i class="fas fa-cube"></i> Semua Kebutuhan</div>
+                        <span class="action-link" id="total-items-count">0 item</span>
+                    </div>
+                    <div id="all-items-list"></div>
+                    <div id="empty-items" class="empty-state d-none">
+                        <div class="empty-icon"><i class="fas fa-box-open"></i></div>
+                        <div class="empty-title">Belum ada kebutuhan</div>
+                        <div class="empty-desc">Tambahkan daftar seserahan yang diperlukan</div>
+                    </div>
+                </div>
+            </div>
+            <div id="add-item" class="sub-tab-content">
+                <div class="form-card">
+                    <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;">
+                        <i class="fas fa-circle-plus" style="color:var(--gold);font-size:1.2rem;"></i>
+                        <span style="font-weight:600;font-size:1rem;">Tambah Kebutuhan Baru</span>
+                    </div>
+                    <form id="item-form">
+                        <div class="form-group">
+                            <label class="form-label" for="item-name">Nama Barang</label>
+                            <input type="text" id="item-name" class="form-control" placeholder="Cincin tunangan" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="item-price">Perkiraan Harga (Rp)</label>
+                            <input type="number" id="item-price" class="form-control" placeholder="2500000" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="item-status">Status</label>
+                            <select id="item-status" class="form-control">
+                                <option value="pending">Belum dibeli</option>
+                                <option value="done">Sudah dibeli</option>
+                            </select>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" id="cancel-item">Batal</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- HISTORY TAB -->
+        <div id="history-tab" class="tab-content">
+            <div class="section-card" style="padding-bottom:8px;">
+                <div class="section-head">
+                    <div class="title"><i class="fas fa-clock-rotate-left"></i> Riwayat Transaksi</div>
+                </div>
+                <div class="sub-tabs" style="margin-bottom:14px;">
+                    <button class="sub-tab active" data-tab="all-history">Semua</button>
+                    <button class="sub-tab" data-tab="savings-history-only">Tabungan</button>
+                    <button class="sub-tab" data-tab="expenses-history-only">Belanja</button>
+                </div>
+                <div id="all-history" class="sub-tab-content active">
+                    <div id="all-history-list"></div>
+                    <div id="empty-all-history" class="empty-state d-none">
+                        <div class="empty-icon"><i class="fas fa-clock"></i></div>
+                        <div class="empty-title">Belum ada transaksi</div>
+                    </div>
+                </div>
+                <div id="savings-history-only" class="sub-tab-content">
+                    <div id="savings-only-list"></div>
+                    <div id="empty-savings-only" class="empty-state d-none">
+                        <div class="empty-icon"><i class="fas fa-piggy-bank"></i></div>
+                        <div class="empty-title">Belum ada tabungan</div>
+                    </div>
+                </div>
+                <div id="expenses-history-only" class="sub-tab-content">
+                    <div id="expenses-only-list"></div>
+                    <div id="empty-expenses-only" class="empty-state d-none">
+                        <div class="empty-icon"><i class="fas fa-receipt"></i></div>
+                        <div class="empty-title">Belum ada pembelian</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FAB -->
+    <button class="fab" id="fab" aria-label="Tambah"><i class="fas fa-plus"></i></button>
+
+    <!-- BOTTOM NAV -->
+    <nav class="bottom-nav">
+        <button class="nav-item active" data-tab="dashboard-tab">
+            <i class="fas fa-house nav-icon"></i>
+            <span class="nav-label">Beranda</span>
+        </button>
+        <button class="nav-item" data-tab="savings-tab">
+            <i class="fas fa-piggy-bank nav-icon"></i>
+            <span class="nav-label">Tabungan</span>
+        </button>
+        <button class="nav-item" data-tab="seserahan-tab">
+            <i class="fas fa-gift nav-icon"></i>
+            <span class="nav-label">Seserahan</span>
+        </button>
+        <button class="nav-item" data-tab="history-tab">
+            <i class="fas fa-clock-rotate-left nav-icon"></i>
+            <span class="nav-label">Riwayat</span>
+        </button>
+    </nav>
+
+    <!-- MODAL -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title" id="modal-title">Edit Data</span>
+                <button class="modal-close" id="close-modal"><i class="fas fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-form">
+                    <input type="hidden" id="edit-id">
+                    <input type="hidden" id="edit-type">
+                    <div id="edit-savings-fields">
+                        <div class="form-group">
+                            <label class="form-label" for="edit-savings-amount">Jumlah (Rp)</label>
+                            <input type="number" id="edit-savings-amount" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="edit-savings-date">Tanggal</label>
+                            <input type="date" id="edit-savings-date" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="edit-savings-notes">Catatan</label>
+                            <input type="text" id="edit-savings-notes" class="form-control">
+                        </div>
+                    </div>
+                    <div id="edit-item-fields" class="d-none">
+                        <div class="form-group">
+                            <label class="form-label" for="edit-item-name">Nama Barang</label>
+                            <input type="text" id="edit-item-name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="edit-item-price">Perkiraan Harga (Rp)</label>
+                            <input type="number" id="edit-item-price" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="edit-item-status">Status</label>
+                            <select id="edit-item-status" class="form-control">
+                                <option value="pending">Belum dibeli</option>
+                                <option value="done">Sudah dibeli</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-danger" id="delete-item">Hapus</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- IMPORT FILE INPUT -->
+    <input type="file" id="import-file-input" accept=".json" style="display:none;">
+
     <script>
         // ===================== KONFIGURASI =====================
-        // URL Web App Google Apps Script Anda
+        // Ganti dengan URL deploy Google Apps Script Anda
         const API_URL = 'https://script.google.com/macros/s/AKfycbwIBAfIa5uddcykJlDuFF33QFOiu3oom88McDLYv87b70nEnjOK9NFfVVgfh-zCEOso/exec';
 
         // ===================== VARIABEL GLOBAL =====================
         let savings = [];
         let items = [];
         let targetAmount = 10000000;
-        let currentTheme = 'dark'; // default dark karena desain ini dark
+        let currentTheme = 'light';
 
-        // ===================== FUNGSI UTILITY =====================
+        // ===================== UTILITY =====================
         function formatCurrency(amount) {
             return 'Rp ' + amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
         }
-
         function getCurrentDate() {
             const d = new Date();
             return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2,
-            '0');
+                '0');
         }
-
         function generateId() {
             return Date.now().toString(36) + Math.random().toString(36).substr(2, 6);
         }
-
         function formatDate(dateStr) {
             const d = new Date(dateStr);
             return d.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
         }
-
         function getMonthRange() {
             const now = new Date();
-            const start = new Date(now.getFullYear(), now.getMonth(), 1);
-            const end = new Date(now.getFullYear(), now.getMonth() + 1, 0);
-            return { start, end };
+            return {
+                start: new Date(now.getFullYear(), now.getMonth(), 1),
+                end: new Date(now.getFullYear(), now.getMonth() + 1, 0)
+            };
         }
-
         function isInMonth(dateStr, range) {
             const d = new Date(dateStr);
             return d >= range.start && d <= range.end;
         }
-
-        // ===================== DATABASE (Google Sheets) =====================
-        async function loadData() {
-            try {
-                const response = await fetch(API_URL);
-                if (!response.ok) throw new Error('Network error');
-                const data = await response.json();
-                if (data.error) throw new Error(data.error);
-
-                savings = data.savings || [];
-                items = data.items || [];
-                targetAmount = data.targetAmount || 10000000;
-
-                // Cache ke localStorage untuk offline
-                localStorage.setItem('weddingSavings', JSON.stringify(savings));
-                localStorage.setItem('weddingItems', JSON.stringify(items));
-                localStorage.setItem('weddingTarget', targetAmount.toString());
-            } catch (error) {
-                console.warn('Gagal load dari Google Sheets, pakai cache lokal:', error);
-                // Fallback ke localStorage
-                const s = localStorage.getItem('weddingSavings');
-                const i = localStorage.getItem('weddingItems');
-                const t = localStorage.getItem('weddingTarget');
-                if (s) savings = JSON.parse(s);
-                if (i) items = JSON.parse(i);
-                if (t) targetAmount = parseInt(t);
-            }
-            updateUI();
-        }
-
-        async function saveData() {
-            // 1. Simpan ke cache lokal dulu
-            localStorage.setItem('weddingSavings', JSON.stringify(savings));
-            localStorage.setItem('weddingItems', JSON.stringify(items));
-            localStorage.setItem('weddingTarget', targetAmount.toString());
-
-            // 2. Kirim ke Google Sheets
-            try {
-                const payload = { savings, items, targetAmount };
-                await fetch(API_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                console.log('Data berhasil disimpan ke Google Sheets.');
-            } catch (error) {
-                console.warn('Gagal simpan ke Google Sheets, data tetap aman di cache:', error);
-            }
-        }
-
-        // ===== CALCULATIONS =====
         function calcTotals() {
             const totalSavings = savings.reduce((s, v) => s + v.amount, 0);
             const totalExpenses = items.filter(i => i.status === 'done').reduce((s, v) => s + v.price, 0);
             const remaining = totalSavings - totalExpenses;
             const pct = targetAmount > 0 ? Math.min(100, Math.round((totalSavings / targetAmount) * 100)) : 0;
-
             const range = getMonthRange();
             const monthSavings = savings.filter(s => isInMonth(s.date, range)).reduce((sum, v) => sum + v.amount, 0);
             const monthExpenses = items.filter(i => i.status === 'done' && isInMonth(i.purchasedDate || i.createdDate, range))
                 .reduce((sum, v) => sum + v.price, 0);
-
             return { totalSavings, totalExpenses, remaining, pct, monthSavings, monthExpenses };
         }
 
-        // ===== RENDER (semua fungsi render sama dengan file Anda) =====
+        // ===================== THEME =====================
+        function initTheme() {
+            const saved = localStorage.getItem('weddingAppTheme');
+            currentTheme = saved || 'light';
+            applyTheme();
+        }
+        function applyTheme() {
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            localStorage.setItem('weddingAppTheme', currentTheme);
+        }
+
+        // ===================== DATABASE (Google Sheets + localStorage) =====================
+        async function loadData() {
+            try {
+                const resp = await fetch(API_URL);
+                if (!resp.ok) throw new Error('Network error');
+                const data = await resp.json();
+                if (data.error) throw new Error(data.error);
+                savings = data.savings || [];
+                items = data.items || [];
+                targetAmount = data.targetAmount || 10000000;
+                // cache
+                localStorage.setItem('weddingSavings', JSON.stringify(savings));
+                localStorage.setItem('weddingItems', JSON.stringify(items));
+                localStorage.setItem('weddingTarget', targetAmount.toString());
+            } catch (e) {
+                console.warn('Gagal load dari Google Sheets, pakai cache lokal:', e);
+                const s = localStorage.getItem('weddingSavings');
+                const i = localStorage.getItem('weddingItems');
+                const t = localStorage.getItem('weddingTarget');
+                if (s) savings = JSON.parse(s);
+                if (i) items = JSON.parse(i);
+                if (t) targetAmount = parseInt(t) || 10000000;
+            }
+            updateUI();
+        }
+
+        async function saveData() {
+            // cache lokal
+            localStorage.setItem('weddingSavings', JSON.stringify(savings));
+            localStorage.setItem('weddingItems', JSON.stringify(items));
+            localStorage.setItem('weddingTarget', targetAmount.toString());
+            // kirim ke Google Sheets
+            try {
+                await fetch(API_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ savings, items, targetAmount })
+                });
+                console.log('Data tersimpan di Google Sheets.');
+            } catch (e) {
+                console.warn('Gagal simpan ke Google Sheets, data tetap di cache.', e);
+            }
+        }
+
+        // ===================== RENDER =====================
         function updateUI() {
             const t = calcTotals();
-
             document.getElementById('total-savings').textContent = formatCurrency(t.totalSavings);
             document.getElementById('target-amount').textContent = formatCurrency(targetAmount);
             document.getElementById('total-expenses').textContent = formatCurrency(t.totalExpenses);
@@ -205,10 +1172,8 @@
             document.getElementById('progress-fill').style.width = t.pct + '%';
             document.getElementById('progress-saved').textContent = formatCurrency(t.totalSavings);
             document.getElementById('progress-target').textContent = formatCurrency(targetAmount);
-
             document.getElementById('savings-change').textContent = '+ ' + formatCurrency(t.monthSavings) + ' bulan ini';
             document.getElementById('expenses-change').textContent = '- ' + formatCurrency(t.monthExpenses) + ' bulan ini';
-
             const balStatus = document.getElementById('balance-status');
             if (t.remaining >= 0) {
                 balStatus.textContent = 'Sisa cukup';
@@ -217,40 +1182,135 @@
                 balStatus.textContent = 'Defisit ' + formatCurrency(Math.abs(t.remaining));
                 balStatus.className = 'stat-change negative';
             }
-
             document.getElementById('total-savings-count').textContent = savings.length + ' item';
             document.getElementById('total-items-count').textContent = items.length + ' item';
 
-            renderRecentSavings();
-            renderPendingItems();
-            renderSavingsHistory();
-            renderAllItems();
-            renderAllHistory();
-            renderSavingsOnly();
-            renderExpensesOnly();
+            renderList('recent-savings-list', 'empty-savings',
+                [...savings].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 4),
+                s => `<div class="list-item" data-id="${s.id}" data-type="savings">
+                        <div class="item-avatar gold"><i class="fas fa-coins"></i></div>
+                        <div class="item-body"><div class="name">${s.notes || 'Tabungan'}</div><div class="meta">${formatDate(s.date)}</div></div>
+                        <div class="item-amount gold">${formatCurrency(s.amount)}</div>
+                    </div>`
+            );
+
+            const pending = items.filter(i => i.status === 'pending');
+            renderList('pending-items-list', 'empty-pending', pending,
+                i => `<div class="list-item" data-id="${i.id}" data-type="item">
+                        <div class="item-avatar rose"><i class="fas fa-clock"></i></div>
+                        <div class="item-body"><div class="name">${i.name}</div><div class="meta">${formatCurrency(i.price)} <span class="dot"></span> Belum dibeli</div></div>
+                        <span class="item-badge pending">Pending</span>
+                    </div>`
+            );
+
+            const sortedSavings = [...savings].sort((a, b) => new Date(b.date) - new Date(a.date));
+            renderList('savings-history-list', 'empty-savings-history', sortedSavings,
+                s => `<li class="list-item" data-id="${s.id}" data-type="savings">
+                        <div class="item-avatar gold"><i class="fas fa-coins"></i></div>
+                        <div class="item-body"><div class="name">${s.notes || 'Tabungan'}</div><div class="meta">${formatDate(s.date)}</div></div>
+                        <div class="item-amount gold">${formatCurrency(s.amount)}</div>
+                    </li>`
+            );
+
+            renderList('all-items-list', 'empty-items', items,
+                i => `<li class="list-item" data-id="${i.id}" data-type="item">
+                        <div class="item-avatar ${i.status === 'done' ? 'green' : 'rose'}">
+                            <i class="fas ${i.status === 'done' ? 'fa-circle-check' : 'fa-clock'}"></i>
+                        </div>
+                        <div class="item-body"><div class="name">${i.name}</div><div class="meta">${formatCurrency(i.price)} <span class="dot"></span> ${i.status === 'done' ? 'Sudah dibeli' : 'Belum dibeli'}</div></div>
+                        <span class="item-badge ${i.status === 'done' ? 'done' : 'pending'}">${i.status === 'done' ? 'Done' : 'Pending'}</span>
+                    </li>`
+            );
+
+            // History
+            const combined = [
+                ...savings.map(s => ({ ...s, _type: 'savings', _date: new Date(s.date) })),
+                ...items.filter(i => i.status === 'done').map(i => ({ ...i, _type: 'expense', _date: new Date(i.purchasedDate || i.createdDate), amount: i.price }))
+            ];
+            const sortedCombined = combined.sort((a, b) => b._date - a._date);
+            renderList('all-history-list', 'empty-all-history', sortedCombined,
+                h => `<div class="list-item">
+                        <div class="item-avatar ${h._type === 'savings' ? 'gold' : 'rose'}">
+                            <i class="fas ${h._type === 'savings' ? 'fa-piggy-bank' : 'fa-receipt'}"></i>
+                        </div>
+                        <div class="item-body"><div class="name">${h._type === 'savings' ? (h.notes || 'Tabungan') : h.name}</div>
+                        <div class="meta">${formatDate(h._date)} <span class="dot"></span> ${h._type === 'savings' ? 'Tabungan' : 'Pembelian'}</div></div>
+                        <div class="item-amount ${h._type === 'savings' ? 'gold' : 'rose'}">${h._type === 'savings' ? '+' : '-'} ${formatCurrency(h.amount)}</div>
+                    </div>`
+            );
+
+            renderList('savings-only-list', 'empty-savings-only', sortedSavings,
+                s => `<div class="list-item">
+                        <div class="item-avatar gold"><i class="fas fa-piggy-bank"></i></div>
+                        <div class="item-body"><div class="name">${s.notes || 'Tabungan'}</div><div class="meta">${formatDate(s.date)}</div></div>
+                        <div class="item-amount gold">+ ${formatCurrency(s.amount)}</div>
+                    </div>`
+            );
+
+            const purchased = items.filter(i => i.status === 'done');
+            renderList('expenses-only-list', 'empty-expenses-only', purchased,
+                i => `<div class="list-item">
+                        <div class="item-avatar rose"><i class="fas fa-receipt"></i></div>
+                        <div class="item-body"><div class="name">${i.name}</div><div class="meta">${formatDate(i.purchasedDate || i.createdDate)}</div></div>
+                        <div class="item-amount rose">- ${formatCurrency(i.price)}</div>
+                    </div>`
+            );
         }
 
-        // Semua fungsi render (renderRecentSavings, renderPendingItems, dll.) 
-        // SAMA PERSIS dengan yang ada di file Anda. 
-        // Karena panjang, saya tidak menulis ulang di sini, tetapi pada implementasi nyata, saya akan salin semua.
+        function renderList(containerId, emptyId, data, renderFn) {
+            const container = document.getElementById(containerId);
+            const empty = document.getElementById(emptyId);
+            if (!container || !empty) return;
+            if (!data || data.length === 0) {
+                container.innerHTML = '';
+                empty.classList.remove('d-none');
+                return;
+            }
+            empty.classList.add('d-none');
+            container.innerHTML = data.map(renderFn).join('');
+        }
 
-        // ===== MODAL =====
+        // ===================== MODAL =====================
         function openEditModal(id, type) {
-            // Sama seperti di file Anda
+            const modal = document.getElementById('edit-modal');
+            document.getElementById('edit-id').value = id;
+            document.getElementById('edit-type').value = type;
+            const sf = document.getElementById('edit-savings-fields');
+            const iff = document.getElementById('edit-item-fields');
+            if (type === 'savings') {
+                const item = savings.find(s => s.id === id);
+                if (!item) return;
+                document.getElementById('modal-title').textContent = 'Edit Tabungan';
+                sf.classList.remove('d-none');
+                iff.classList.add('d-none');
+                document.getElementById('edit-savings-amount').value = item.amount;
+                document.getElementById('edit-savings-date').value = item.date;
+                document.getElementById('edit-savings-notes').value = item.notes || '';
+            } else {
+                const item = items.find(i => i.id === id);
+                if (!item) return;
+                document.getElementById('modal-title').textContent = 'Edit Kebutuhan';
+                sf.classList.add('d-none');
+                iff.classList.remove('d-none');
+                document.getElementById('edit-item-name').value = item.name;
+                document.getElementById('edit-item-price').value = item.price;
+                document.getElementById('edit-item-status').value = item.status;
+            }
+            modal.classList.add('active');
         }
+
         function closeEditModal() {
-            // Sama
+            document.getElementById('edit-modal').classList.remove('active');
         }
 
-        // ===== INIT =====
-        async function init() {
+        // ===================== INIT =====================
+        document.addEventListener('DOMContentLoaded', function() {
+            initTheme();
             document.getElementById('savings-date').value = getCurrentDate();
-            await loadData();
 
-            // Semua event listener SAMA PERSIS dengan file Anda,
-            // hanya saja fungsi saveData dan loadData sekarang async dan terhubung ke Google Sheets.
+            loadData();
 
-            // ===== NAVIGATION =====
+            // NAVIGATION
             document.querySelectorAll('.nav-item').forEach(btn => {
                 btn.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -258,42 +1318,36 @@
                     document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
                     document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-                    document.getElementById(tabId).classList.add('active');
-
+                    const target = document.getElementById(tabId);
+                    if (target) target.classList.add('active');
+                    // Reset sub-tabs
                     const parent = document.getElementById(tabId);
                     if (parent) {
                         const firstSub = parent.querySelector('.sub-tab');
                         if (firstSub) {
                             parent.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
                             firstSub.classList.add('active');
-                            const target = firstSub.getAttribute('data-tab');
+                            const subTargetId = firstSub.getAttribute('data-tab');
                             parent.querySelectorAll('.sub-tab-content').forEach(c => c.classList.remove('active'));
-                            const targetEl = document.getElementById(target);
-                            if (targetEl) targetEl.classList.add('active');
+                            const subTarget = document.getElementById(subTargetId);
+                            if (subTarget) subTarget.classList.add('active');
                         }
                     }
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 });
             });
 
-            // Sub-tabs
+            // SUB-TABS
             document.querySelectorAll('.sub-tab').forEach(tab => {
                 tab.addEventListener('click', function() {
                     const parent = this.closest('.tab-content') || this.closest('.section-card');
-                    const container = parent || document;
-                    container.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
+                    if (!parent) return;
+                    parent.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
                     this.classList.add('active');
                     const targetId = this.getAttribute('data-tab');
-                    const contentParent = container.querySelectorAll('.sub-tab-content');
-                    if (contentParent.length) {
-                        contentParent.forEach(c => c.classList.remove('active'));
-                        const target = document.getElementById(targetId);
-                        if (target) target.classList.add('active');
-                    } else {
-                        document.querySelectorAll('.sub-tab-content').forEach(c => c.classList.remove('active'));
-                        const target = document.getElementById(targetId);
-                        if (target) target.classList.add('active');
-                    }
+                    parent.querySelectorAll('.sub-tab-content').forEach(c => c.classList.remove('active'));
+                    const target = document.getElementById(targetId);
+                    if (target) target.classList.add('active');
                 });
             });
 
@@ -336,19 +1390,15 @@
                 const date = document.getElementById('savings-date').value;
                 const notes = document.getElementById('savings-notes').value.trim();
                 if (!amount || !date) return;
-
                 savings.push({ id: generateId(), amount, date, notes, createdDate: new Date().toISOString() });
                 await saveData();
                 updateUI();
                 this.reset();
                 document.getElementById('savings-date').value = getCurrentDate();
-
                 document.querySelectorAll('#savings-tab .sub-tab').forEach(t => t.classList.remove('active'));
                 document.querySelector('#savings-tab .sub-tab[data-tab="savings-list"]').classList.add('active');
                 document.querySelectorAll('#savings-tab .sub-tab-content').forEach(c => c.classList.remove('active'));
                 document.getElementById('savings-list').classList.add('active');
-
-                if (navigator.vibrate) navigator.vibrate(12);
                 alert('Tabungan berhasil disimpan!');
             });
 
@@ -368,20 +1418,16 @@
                 const price = parseInt(document.getElementById('item-price').value);
                 const status = document.getElementById('item-status').value;
                 if (!name || !price) return;
-
                 const newItem = { id: generateId(), name, price, status, createdDate: new Date().toISOString() };
                 if (status === 'done') newItem.purchasedDate = new Date().toISOString();
                 items.push(newItem);
                 await saveData();
                 updateUI();
                 this.reset();
-
                 document.querySelectorAll('#seserahan-tab .sub-tab').forEach(t => t.classList.remove('active'));
                 document.querySelector('#seserahan-tab .sub-tab[data-tab="items-list"]').classList.add('active');
                 document.querySelectorAll('#seserahan-tab .sub-tab-content').forEach(c => c.classList.remove('active'));
                 document.getElementById('items-list').classList.add('active');
-
-                if (navigator.vibrate) navigator.vibrate(12);
                 alert('Kebutuhan berhasil disimpan!');
             });
 
@@ -398,7 +1444,6 @@
                 e.preventDefault();
                 const id = document.getElementById('edit-id').value;
                 const type = document.getElementById('edit-type').value;
-
                 if (type === 'savings') {
                     const idx = savings.findIndex(s => s.id === id);
                     if (idx === -1) return;
@@ -423,11 +1468,9 @@
                         items[idx].purchasedDate = new Date().toISOString();
                     }
                 }
-
                 await saveData();
                 updateUI();
                 closeEditModal();
-                if (navigator.vibrate) navigator.vibrate(10);
                 alert('Data diperbarui!');
             });
 
@@ -435,14 +1478,12 @@
                 const id = document.getElementById('edit-id').value;
                 const type = document.getElementById('edit-type').value;
                 if (!confirm('Hapus data ini?')) return;
-
                 if (type === 'savings') savings = savings.filter(s => s.id !== id);
                 else items = items.filter(i => i.id !== id);
-
                 await saveData();
                 updateUI();
                 closeEditModal();
-                if (navigator.vibrate) navigator.vibrate(10);
+                alert('Data dihapus.');
             });
 
             document.getElementById('close-modal').addEventListener('click', closeEditModal);
@@ -460,15 +1501,17 @@
                     targetAmount = val;
                     saveData();
                     updateUI();
-                    if (navigator.vibrate) navigator.vibrate(10);
                 } else {
                     alert('Masukkan angka yang valid.');
                 }
             });
+            document.getElementById('target-amount').addEventListener('click', function() {
+                document.getElementById('headerTargetBtn').click();
+            });
 
-            // DATA MANAGEMENT
+            // EXPORT / IMPORT / RESET
             document.getElementById('export-data').addEventListener('click', function() {
-                const data = { savings, items, targetAmount, exportDate: new Date().toISOString() };
+                const data = { savings, items, targetAmount, theme: currentTheme, exportDate: new Date().toISOString() };
                 const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
@@ -493,6 +1536,10 @@
                         savings = data.savings || [];
                         items = data.items || [];
                         targetAmount = data.targetAmount || 10000000;
+                        if (data.theme) {
+                            currentTheme = data.theme;
+                            applyTheme();
+                        }
                         await saveData();
                         updateUI();
                         alert('Import berhasil! Data tersimpan di Google Sheets.');
@@ -522,7 +1569,6 @@
                 document.getElementById('savings-tab').classList.add('active');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
-
             document.getElementById('goto-items').addEventListener('click', function() {
                 document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
                 document.querySelector('.nav-item[data-tab="seserahan-tab"]').classList.add('active');
@@ -541,251 +1587,9 @@
                 }
             });
 
-            document.getElementById('target-amount').addEventListener('click', function() {
-                document.getElementById('headerTargetBtn').click();
-            });
-
-            // iOS safe area
-            if (window.navigator.userAgent.includes('iPhone') || window.navigator.userAgent.includes('iPad')) {
-                document.body.style.paddingBottom = 'calc(var(--nav-height) + 28px + var(--safe-bottom))';
-            }
-
-            window.scrollTo(0, 0);
-        }
-
-        // ===== FUNGSI RENDER (harus didefinisikan) =====
-        // Saya akan tulis ulang semua fungsi render di sini (meskipun panjang)
-        // agar file HTML ini benar-benar lengkap dan bisa langsung dijalankan.
-
-        function renderRecentSavings() {
-            const container = document.getElementById('recent-savings-list');
-            const empty = document.getElementById('empty-savings');
-            const sorted = [...savings].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 4);
-
-            if (sorted.length === 0) {
-                container.innerHTML = '';
-                empty.classList.remove('d-none');
-                return;
-            }
-            empty.classList.add('d-none');
-
-            container.innerHTML = sorted.map(s => `
-                    <div class="list-item" data-id="${s.id}" data-type="savings">
-                        <div class="item-avatar gold"><i class="fas fa-coins"></i></div>
-                        <div class="item-body">
-                            <div class="name">${s.notes || 'Tabungan'}</div>
-                            <div class="meta">${formatDate(s.date)}</div>
-                        </div>
-                        <div class="item-amount gold">${formatCurrency(s.amount)}</div>
-                    </div>
-                `).join('');
-        }
-
-        function renderPendingItems() {
-            const container = document.getElementById('pending-items-list');
-            const empty = document.getElementById('empty-pending');
-            const pending = items.filter(i => i.status === 'pending');
-
-            if (pending.length === 0) {
-                container.innerHTML = '';
-                empty.classList.remove('d-none');
-                return;
-            }
-            empty.classList.add('d-none');
-
-            container.innerHTML = pending.map(i => `
-                    <div class="list-item" data-id="${i.id}" data-type="item">
-                        <div class="item-avatar rose"><i class="fas fa-clock"></i></div>
-                        <div class="item-body">
-                            <div class="name">${i.name}</div>
-                            <div class="meta">${formatCurrency(i.price)} <span class="dot"></span> Belum dibeli</div>
-                        </div>
-                        <span class="item-badge pending">Pending</span>
-                    </div>
-                `).join('');
-        }
-
-        function renderSavingsHistory() {
-            const container = document.getElementById('savings-history-list');
-            const empty = document.getElementById('empty-savings-history');
-            const sorted = [...savings].sort((a, b) => new Date(b.date) - new Date(a.date));
-
-            if (sorted.length === 0) {
-                container.innerHTML = '';
-                empty.classList.remove('d-none');
-                return;
-            }
-            empty.classList.add('d-none');
-
-            container.innerHTML = sorted.map(s => `
-                    <div class="list-item" data-id="${s.id}" data-type="savings">
-                        <div class="item-avatar gold"><i class="fas fa-coins"></i></div>
-                        <div class="item-body">
-                            <div class="name">${s.notes || 'Tabungan'}</div>
-                            <div class="meta">${formatDate(s.date)}</div>
-                        </div>
-                        <div class="item-amount gold">${formatCurrency(s.amount)}</div>
-                    </div>
-                `).join('');
-        }
-
-        function renderAllItems() {
-            const container = document.getElementById('all-items-list');
-            const empty = document.getElementById('empty-items');
-
-            if (items.length === 0) {
-                container.innerHTML = '';
-                empty.classList.remove('d-none');
-                return;
-            }
-            empty.classList.add('d-none');
-
-            container.innerHTML = items.map(i => {
-                const isDone = i.status === 'done';
-                return `
-                        <div class="list-item" data-id="${i.id}" data-type="item">
-                            <div class="item-avatar ${isDone ? 'green' : 'rose'}">
-                                <i class="fas ${isDone ? 'fa-circle-check' : 'fa-clock'}"></i>
-                            </div>
-                            <div class="item-body">
-                                <div class="name">${i.name}</div>
-                                <div class="meta">${formatCurrency(i.price)} <span class="dot"></span> ${isDone ? 'Sudah dibeli' : 'Belum dibeli'}</div>
-                            </div>
-                            <span class="item-badge ${isDone ? 'done' : 'pending'}">${isDone ? 'Done' : 'Pending'}</span>
-                        </div>
-                    `;
-            }).join('');
-        }
-
-        function renderAllHistory() {
-            const container = document.getElementById('all-history-list');
-            const empty = document.getElementById('empty-all-history');
-
-            const combined = [
-                ...savings.map(s => ({ ...s, _type: 'savings', _date: new Date(s.date) })),
-                ...items.filter(i => i.status === 'done').map(i => ({
-                    ...i,
-                    _type: 'expense',
-                    _date: new Date(i.purchasedDate || i.createdDate),
-                    amount: i.price
-                }))
-            ];
-
-            if (combined.length === 0) {
-                container.innerHTML = '';
-                empty.classList.remove('d-none');
-                return;
-            }
-            empty.classList.add('d-none');
-
-            const sorted = combined.sort((a, b) => b._date - a._date);
-
-            container.innerHTML = sorted.map(h => {
-                const isSavings = h._type === 'savings';
-                return `
-                        <div class="list-item">
-                            <div class="item-avatar ${isSavings ? 'gold' : 'rose'}">
-                                <i class="fas ${isSavings ? 'fa-piggy-bank' : 'fa-receipt'}"></i>
-                            </div>
-                            <div class="item-body">
-                                <div class="name">${isSavings ? (h.notes || 'Tabungan') : h.name}</div>
-                                <div class="meta">${formatDate(h._date)} <span class="dot"></span> ${isSavings ? 'Tabungan' : 'Pembelian'}</div>
-                            </div>
-                            <div class="item-amount ${isSavings ? 'gold' : 'rose'}">${isSavings ? '+' : '-'} ${formatCurrency(h.amount)}</div>
-                        </div>
-                    `;
-            }).join('');
-        }
-
-        function renderSavingsOnly() {
-            const container = document.getElementById('savings-only-list');
-            const empty = document.getElementById('empty-savings-only');
-            const sorted = [...savings].sort((a, b) => new Date(b.date) - new Date(a.date));
-
-            if (sorted.length === 0) {
-                container.innerHTML = '';
-                empty.classList.remove('d-none');
-                return;
-            }
-            empty.classList.add('d-none');
-
-            container.innerHTML = sorted.map(s => `
-                    <div class="list-item">
-                        <div class="item-avatar gold"><i class="fas fa-piggy-bank"></i></div>
-                        <div class="item-body">
-                            <div class="name">${s.notes || 'Tabungan'}</div>
-                            <div class="meta">${formatDate(s.date)}</div>
-                        </div>
-                        <div class="item-amount gold">+ ${formatCurrency(s.amount)}</div>
-                    </div>
-                `).join('');
-        }
-
-        function renderExpensesOnly() {
-            const container = document.getElementById('expenses-only-list');
-            const empty = document.getElementById('empty-expenses-only');
-            const purchased = items.filter(i => i.status === 'done');
-
-            if (purchased.length === 0) {
-                container.innerHTML = '';
-                empty.classList.remove('d-none');
-                return;
-            }
-            empty.classList.add('d-none');
-
-            container.innerHTML = purchased.map(i => `
-                    <div class="list-item">
-                        <div class="item-avatar rose"><i class="fas fa-receipt"></i></div>
-                        <div class="item-body">
-                            <div class="name">${i.name}</div>
-                            <div class="meta">${formatDate(i.purchasedDate || i.createdDate)}</div>
-                        </div>
-                        <div class="item-amount rose">- ${formatCurrency(i.price)}</div>
-                    </div>
-                `).join('');
-        }
-
-        // ===== OPEN/CLOSE MODAL (harus didefinisikan) =====
-        function openEditModal(id, type) {
-            const modal = document.getElementById('edit-modal');
-            document.getElementById('edit-id').value = id;
-            document.getElementById('edit-type').value = type;
-
-            const savingsFields = document.getElementById('edit-savings-fields');
-            const itemFields = document.getElementById('edit-item-fields');
-
-            if (type === 'savings') {
-                const item = savings.find(s => s.id === id);
-                if (!item) return;
-                document.getElementById('modal-title').textContent = 'Edit Tabungan';
-                savingsFields.classList.remove('d-none');
-                itemFields.classList.add('d-none');
-                document.getElementById('edit-savings-amount').value = item.amount;
-                document.getElementById('edit-savings-date').value = item.date;
-                document.getElementById('edit-savings-notes').value = item.notes || '';
-            } else {
-                const item = items.find(i => i.id === id);
-                if (!item) return;
-                document.getElementById('modal-title').textContent = 'Edit Kebutuhan';
-                savingsFields.classList.add('d-none');
-                itemFields.classList.remove('d-none');
-                document.getElementById('edit-item-name').value = item.name;
-                document.getElementById('edit-item-price').value = item.price;
-                document.getElementById('edit-item-status').value = item.status;
-            }
-
-            modal.classList.add('active');
-        }
-
-        function closeEditModal() {
-            document.getElementById('edit-modal').classList.remove('active');
-        }
-
-        // ===== START =====
-        document.addEventListener('DOMContentLoaded', init);
-        window.addEventListener('load', function() {
             window.scrollTo(0, 0);
         });
     </script>
+
 </body>
 </html>
